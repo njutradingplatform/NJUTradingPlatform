@@ -12,6 +12,10 @@ NJU大学生校内交易平台
 
 GitHub仓库：https://github.com/njutradingplatform/NJUTradingPlatform
 
+## 项目背景
+
+## 目标概述
+
 ## 功能体系和结构
 ### 项目功能
 - 卖方的商品(二手物品、优惠券、拼单等)上架、编辑、接单功能；
@@ -21,8 +25,11 @@ GitHub仓库：https://github.com/njutradingplatform/NJUTradingPlatform
 - AI客服助手；
 - 相关商品的平台(淘宝、京东等)比价推荐；
 
-## 各界面设计图
+### 总体结构设计
 
+### 运行环境
+
+## 界面设计
 主界面
 
 搜索界面
@@ -36,5 +43,5 @@ GitHub仓库：https://github.com/njutradingplatform/NJUTradingPlatform
 （个人信息）
 
 
-## 使用场景图
+
 
