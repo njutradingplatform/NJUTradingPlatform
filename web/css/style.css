@@ -362,6 +362,13 @@ h3.cate {
 	background: #000;
 	margin: 0;
 }
+h4.cate {
+	color: #fff;
+	font-size: 1.7em;
+	padding: 0.6em ;
+	background: #000;
+	margin: 0;
+}
 /*----*/
 ul.kid-menu{
 	display: block !important;
@@ -851,6 +858,10 @@ h3.m_3 {
 	margin: 0 0 0.5em;
 	font-size: 2em;
 }
+h4.m_3 {
+	margin: 0 0 0.5em;
+	font-size: 2em;
+}
 .etalage_zoom_area div {
     width:460px !important;
     height:500px !important;
@@ -1106,6 +1117,22 @@ h3.m_3 {
 	padding: 0;
 }
 .login-left h3, .login-right h3 {
+	color: #F97E76;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding-bottom: 0.5em;
+}
+.login-right h3 {
+	text-align: 
+	color: #F97E76;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding-bottom: 0.5em;
+	
+}
+.login-right h4 {
 	color: #F97E76;
 	font-size: 1.1em;
 	text-transform: uppercase;
@@ -1915,4 +1942,18 @@ img.banner-bag {
 .img-left-arrow {
 	padding: 0 0 0 6.2em;
 }
+}
+.txtitle{
+	text-align: center
+}
+.login-right img{
+	max-height:200px; 
+ max-width:200px; 
+ width:expression(this.width > 640 && this.height < this.width ? 640: true); 
+ height:expression(this.height > 720 ? 720: true);
+	a
+}
+
+.txcss {
+	position: relative
 }
