@@ -1957,3 +1957,33 @@ img.banner-bag {
 .txcss {
 	position: relative
 }
+.zhifu{
+	color: #F97E76;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding-bottom: 0.5em;
+}
+.xiaoxi{
+	color: #F97E76;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding-bottom: 0.5em;
+}
+.cart-link{
+	color: #F97E76;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding-bottom: 0.5em;
+}
+.function{
+	color: #F97E76;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding-bottom: 0.5em;
+	text-align: center;
+	border:#000000 
+}
