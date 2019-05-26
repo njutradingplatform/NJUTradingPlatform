@@ -1,5 +1,5 @@
 var url = location.search;
-var username = "jzl"
+var username = ""
 var Request = new Object();
 if (url.indexOf("?") != -1) {
     var str = url.substr(1)　//去掉?号
