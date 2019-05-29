@@ -1,27 +1,33 @@
-var url = location.search;
-var username = "";
-var Request = {};
-if (url.indexOf("?") !== -1) {
-    var str = url.substr(1)　//去掉?号
-    strs = str.split("&");
-    for (var i = 0; i < strs.length; i++) {
-        Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+function Login() {
+    var url = location.search;
+    var username,passwd;
+    var Request = {};
+    if (url.indexOf("?") !== -1) {
+        var str = url.substr(1)　//去掉?号
+        strs = str.split("&");
+        for (var i = 0; i < strs.length; i++) {
+            Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+        }
     }
-}
-Init();
-
-function Init() {
-    if (Request["username"] !== undefined)
+    if (Request["username"] !== undefined && Request["passwd"] !== undefined){
         username = Request["username"];
-    if (username !== "") {
+        passwd = Request["passwd"];
+
+    }
+
+}
+
+function Init(state,username,passwd) {
+
+    if (ifLogin) {
         var st = document.getElementsByClassName("touxiang");
         st[0].children[0].children[0].innerText = username;
-        st[0].children[0].children[0].href = "personal.html?username=" + escape(username);
-        var tempUrl = "?username=" + escape(username);
+        st[0].children[0].children[0].href = "personal.html?username=" + escape(username)+"&passwd="+escape(passwd);
+        var tempUrl = "?username=" + escape(username)+"&passwd="+escape(passwd);
         var logo = document.getElementsByClassName("logo");
         logo[0].children[0].href += tempUrl;
         var login = document.getElementsByClassName("login");
-        login[0].children[0].href += tempUrl;
+        login[0].children[0].href = "#"
         var signin = document.getElementsByClassName("signin");
         signin[0].children[0].href = "#";
         var cart = document.getElementsByClassName("cart");
@@ -51,8 +57,15 @@ function Init() {
         try {
             var h3 = document.getElementsByTagName("h3");
             h3[0].children[0].href += tempUrl;
+        } catch (e) {
         }
-        catch (e) {
+        try {
+            var kid = document.getElementsByClassName("kid-menu");
+            for(var i=0;i<3;++i){
+                kid[0].children[i].children[0].href+=tempUrl;
+            }
+            kid[1].children[0].children[0].href+=tempUrl;
+        } catch (e) {
         }
 
     }
