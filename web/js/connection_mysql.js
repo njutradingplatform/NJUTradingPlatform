@@ -13,10 +13,11 @@ connection.connect();
 function Find_user(email,password,func){
 
     // email 为数据库查询结果
-    var sql='SELECT * FROM users WHERE user_email='+email;
-    var result;
+    var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
 
+    console.log(sql);
     function callback(rows,judge){
+        var result;
         result=rows;
         var state; //表示查询结果的状态变量
         if (judge==0){
@@ -34,14 +35,17 @@ function Find_user(email,password,func){
             }
         }
         func(state);
+        return;
     }
     function query(callback){
         connection.query(sql,function(err,rows){
            var judge=1; //判断变量是否存在用户名
-            if(err) {
+            if(rows.length==0) {
                 judge = 0;
             }
+            console.log(judge)
             callback(rows,judge);
+            return;
         })
     }
     query(callback);
@@ -63,6 +67,7 @@ function Get_users(email,func){
     }
     query();
 }
+
 //用户注册函数
 function registration(email,password,first_name,last_name,func){
 
@@ -73,9 +78,9 @@ function registration(email,password,first_name,last_name,func){
     var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES ('+email+', '+password+', '+first_name+', '+last_name+')';
 
     function callback(judge){
-        var state=1; //表示查询结果的状态变量 1为成功
+        var state=2; //表示查询结果的状态变量 1为成功
         if(judge==1){
-            state=0;
+            state=-2;
             // email 已经存在
             func(state);
         }
@@ -99,7 +104,7 @@ function registration(email,password,first_name,last_name,func){
     function insert_query(state){
         connection.query(sql1,function(err,rows){
             if(err) {
-                state=-1;
+                state=-3;
             }
             func(state);
         })
@@ -116,9 +121,9 @@ function Reset_password(email,password,func){
 
     function query(callback){
         connection.query(sql1,function(err,rows){
-            var state=1;
+            var state=3;
             if(err) {
-                state=-1;
+                state=-4;
             }
             func(state);
         })
@@ -205,7 +210,7 @@ function Search(key,func){
 
     var sql='SELECT * FROM products';
 
-
+    // 逻辑放在callback中避免异步执行问题
     function callback(rows){
         var res;
         res=rows;
@@ -240,8 +245,6 @@ function Search(key,func){
 
     query(callback);
 
-
-
     // 求最长公共子序列的长度
     function lcs(str1, str2) {
         var len1 = str1.length;
@@ -267,6 +270,13 @@ function Search(key,func){
 
 }
 
+function print(msg) {
+    console.log("\n--->>\nresult:",msg);
+}
 
+Find_user('0001','111111',print);
+
+connection.end();
 //mysql -udatabase -h 172.26.22.71 --port 2347 -p  进入到远程服务器数据库的操作
 // 密码 shujuku
+
