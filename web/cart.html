@@ -58,6 +58,7 @@
                     <input type="text" value="" onfocus="this.value = '';"
                            onblur="if (this.value == '') {this.value = '';}">
                     <input type="submit" value="搜索">
+                    <input type="button" value="test" onclick="addcart()">
                 </div>
                 <img src="images/headtitle.png" width="250" height="73" alt=""/></div>
             <div class="header-bottom-right">
@@ -81,62 +82,32 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <!-- grids_of_4 -->
-            <h3><a href="index.html">返回商品列表页面</a></h3>
-            <table id="table" border="1" cellspacing="0" cellpadding="0" class="hide">
-                <thead>
-                    <tr>
-                        <th>
-                            <input type="checkbox" id="allCheck" class="ck" />全选
-                        </th>
-                        <th>
-                            图片
-                        </th>
-                        <th>
-                            描述
-                        </th>
-                        <th>
-                            数量
-                        </th>
-                        <th>
-                            单价
-                        </th>
-                        <th>
-                            小计
-                        </th>
-                        <th>
-                            操作
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-                    <!--
-                    <tr>
-                        <td>
-                            <input type="checkbox" class="ck"  />
-                        </td>
-                        <td>
-                            <img src="../images/p1.jpg" alt="" />
-                        </td>
-                        <td>
-                            酷黑，棒棒棒棒
-                        </td>
-                        <td>
-                            <button class="down">-</button><input type="text" value="1" readonly="readonly" /><button class="up">+</button>
-                        </td>
-                        <td>
-                            ￥<span>111</span>
-                        </td>
-                        <td>
-                            ￥<span>111</span>
-                        </td>
-                        <td>
-                            <button class="del"  >删除</button>
-                        </td>
-                    </tr>
-                    -->
-                </tbody>
-            </table>
+                <div>
+                    <table class="ad" border="2" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th width="80" height="20">商品名称</th>
+                            <th width="150" height="20">照片</th>
+                            <th width="150" height="20">商品描述</th>
+                            <th width="80" height="20">单价</th>
+                            <th width="80" height="20">数量</th>
+                            <th width="80" height="20">小计</th>
+                            <th width="80" height="20">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="addcarts">
+                        <tr>
+                            <td width="80" height="20">ba.jpg</td>
+                            <td width="150" height="150"><img src="images/ba.jpg" width="150" height="150" alt=""></td>
+                            <td width="150" height="20">black</td>
+                            <td width="80" height="20">perprice</td>
+                            <td width="80" height="20">number</td>
+                            <td width="80" height="20">total</td>
+                            <td width="80" height="20"><input type="button" class="delete" value="删除"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             <div class="box" id="box">购物车里没有任何商品</div>
             <h2 id="h2" class="">总价格：￥<span id="totalPrice">0</span></h2>
         </div>
@@ -144,33 +115,16 @@
     <div class=" top-nav rsidebar span_1_of_left">
         <h3 class="cate">分类</h3>
         <ul class="menu">
-            <li class="item1"><a href="#">食品<img class="arrow-img" src="images/arrow1.png"> </a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
-                </ul>
+            <li class="item1"><a href="#">食品 </a>
+
             </li>
-            <li class="item2"><a href="#">百货 <img class="arrow-img " src="images/arrow1.png"></a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
-                </ul>
+            <li class="item2"><a href="#">百货 </a>
+
             </li>
-            <li class="item3"><a href="#">服饰<img class="arrow-img img-arrow" src="images/arrow1.png"> </a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails</a></li>
-                </ul>
+            <li class="item3"><a href="#">服饰 </a>
+
             </li>
-            <li class="item4"><a href="#">数码设备 <img class="arrow-img img-left-arrow" src="images/arrow1.png"></a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
-                </ul>
+            <li class="item4"><a href="#">数码设备 </a>
             </li>
             <li>
                 <ul class="kid-menu">
@@ -210,4 +164,5 @@
 </div>
 <!---->
 </body>
+<script type="text/javascript" src="js/product.js"></script>
 </html>

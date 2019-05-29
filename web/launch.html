@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <title>Register</title>
+    <title>Launch</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <!--theme-style-->
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -19,8 +19,9 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--//fonts-->
     <script src="js/jquery.min.js"></script>
-
     <script src="js/jquery.easydropdown.js"></script>
+
+    <!--script-->
 </head>
 <body>
 <!--header-->
@@ -40,7 +41,7 @@
             </div>
             <div class="top-header-right">
                 <ul class="touxiang">
-					<li><a href="register.html"><span> </span>用户名</a></li>
+                	<li><a href="register.html"><span> </span>用户名</a></li>
                 </ul>
                 <ul class="top-header-right">
                     <li class="van"><a href="#"></a></li>
@@ -74,41 +75,29 @@
 <!---->
 <div class="container">
 
-    <div class="register">
-        <form>
-            <div class="  register-top-grid">
-                <h3>个人信息</h3>
-                <div class="mation">
-                    <span>姓<label>*</label></span>
-                    <input type="text">
-
-                    <span>名<label>*</label></span>
-                    <input type="text">
-
-                    <span>邮箱地址<label>*</label></span>
-                    <input type="text">
-                </div>
-                <div class="clearfix"></div>
-                <a class="news-letter" href="#">
-                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>是否登陆</label>
-                </a>
-            </div>
-            <div class="  register-bottom-grid">
-                <h3>登陆信息</h3>
-                <div class="mation">
-                    <span>密码<label>*</label></span>
-                    <input type="text">
-                    <span>确认密码<label>*</label></span>
-                    <input type="text">
+    <!---->
+    <div class="main">
+        <div class="reservation_top">
+            <div class=" contact_right">
+                <h3>填写想要上架商品的信息</h3>
+                <div class="contact-form">
+                    <form method="post" action="contact-post.html">
+                        <input type="text" class="textbox" value="名称" onfocus="this.value = '';"
+                               onblur="if (this.value == '') {this.value = '名称';}">
+                        <input type="text" class="textbox" value="价格" onfocus="this.value = '';"
+                               onblur="if (this.value == '') {this.value = '价格';}">
+                        <textarea value="图片" onfocus="this.value= '';"
+                                  onblur="if (this.value == '') {this.value = '图片';}">Message</textarea>
+                        <input type="submit" value="提交">
+                        <div class="clearfix"></div>
+                    </form>
+                    <address class="address">
+                        <dl>
+                            <dt></dt>
+                        </dl>
+                    </address>
                 </div>
             </div>
-        </form>
-        <div class="clearfix"></div>
-        <div class="register-but">
-            <form>
-                <input type="submit" value="提交">
-                <div class="clearfix"></div>
-            </form>
         </div>
     </div>
     <div class="sub-cate">
