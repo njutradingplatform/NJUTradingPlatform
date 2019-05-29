@@ -83,11 +83,30 @@
                     </div>
                 </div>
                 <div>
-                    <form name="cart">
-                        商品名称  图片  描述  单价 数量 小计   操作 <br>
-                        mmmmm    <img src="images/ba.jpg" alt=""> <br>
-                        djslad
-                    </form>
+                    <table class="ad" border="2" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th width="80" height="20">商品名称</th>
+                            <th width="150" height="20">照片</th>
+                            <th width="150" height="20">商品描述</th>
+                            <th width="80" height="20">单价</th>
+                            <th width="80" height="20">数量</th>
+                            <th width="80" height="20">小计</th>
+                            <th width="80" height="20">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="addcarts">
+                        <tr>
+                            <td width="80" height="20">ba.jpg</td>
+                            <td width="150" height="150"><img src="images/ba.jpg" width="150" height="150" alt=""></td>
+                            <td width="150" height="20">black</td>
+                            <td width="80" height="20">perprice</td>
+                            <td width="80" height="20">number</td>
+                            <td width="80" height="20">total</td>
+                            <td width="80" height="20"><input type="button" class="delete" value="删除"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             <div class="box" id="box">购物车里没有任何商品</div>
             <h2 id="h2" class="">总价格：￥<span id="totalPrice">0</span></h2>

@@ -178,9 +178,40 @@ function contact() {
 
 function addcart() {
     //先得到增加的长度 以及数
-    var insert = document.getElementsByClassName("cart");
-    insert.append("<input type='button' value='name'>");
-    insert.submit();
+    var insert=document.getElementsByClassName("addcarts");
+    alert(insert.innerHTML);
+    for(i=0;i<2;i++)
+    {
+        alert('st');
+        var tr=document.createElement("tr");
+        var td1=document.createElement("td");
+        var td2=document.createElement("td");
+        var td3=document.createElement("td");
+        var td4=document.createElement("td");
+        var td5=document.createElement("td");
+        var td6=document.createElement("td");
+        var td7=document.createElement("td");
+        td1.innerHTML='jjs';
+        td2.innerHTML="<img src=\"images/ba.jpg\" width=\"150\" height=\"150\" alt=\"\">";
+        td3.innerHTML=1;
+        td4.innerHTML=2;
+        td5.innerHTML=3;
+        td6.innerHTML='dsa';
+        td7.innerHTML="<input type=\"button\" class=\"delete\" value=\"删除\">";
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        tr.appendChild(td7);
+        alert(tr.innerHTML);
+        alert(insert.innerHTML);
+        insert.innerText='?>?????';
+        alert('cg');
+    }
+
+
 }
 function upgrade(username) {
     //根据username获得数据库数据
