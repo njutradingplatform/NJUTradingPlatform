@@ -35,7 +35,6 @@ function Find_user(email,password,func){
             }
         }
         func(state);
-        return;
     }
     function query(callback){
         connection.query(sql,function(err,rows){
@@ -45,7 +44,6 @@ function Find_user(email,password,func){
             }
             console.log(judge)
             callback(rows,judge);
-            return;
         })
     }
     query(callback);
