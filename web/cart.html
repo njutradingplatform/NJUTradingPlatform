@@ -40,7 +40,7 @@
             </div>
             <div class="top-header-right">
                 <ul class="touxiang">
-					<li><a href="register.html"><span> </span>用户名</a></li>
+                    <li><a href="register.html"><span> </span>用户名</a></li>
                 </ul>
                 <ul class="top-header-right">
                     <li class="van"><a href="#"></a></li>
@@ -71,7 +71,7 @@
             <div class="clearfix"></div>
         </div>
         <!---->
-<div class="container">
+        <div class="container">
             <div class="women-product">
                 <div class=" w_content">
                     <div class="women">
@@ -108,61 +108,65 @@
                         </tbody>
                     </table>
                 </div>
-            <div class="box" id="box">购物车里没有任何商品</div>
-            <h2 id="h2" class="">总价格：￥<span id="totalPrice">0</span></h2>
+                <div class="box" id="box">购物车里没有任何商品</div>
+                <h2 id="h2" class="">总价格：￥<span id="totalPrice">0</span></h2>
+            </div>
+            <div class="sub-cate">
+                <div class=" top-nav rsidebar span_1_of_left">
+                    <h3 class="cate">分类</h3>
+                    <ul class="menu">
+                        <li class="item1"><a href="#">食品 </a>
+
+                        </li>
+                        <li class="item2"><a href="#">百货 </a>
+
+                        </li>
+                        <li class="item3"><a href="#">服饰 </a>
+
+                        </li>
+                        <li class="item4"><a href="#">数码设备 </a>
+                        </li>
+                        <li>
+                            <ul class="kid-menu">
+                                <li><a href="product.html">优惠券</a></li>
+                                <li><a href="product.html">拼单</a></li>
+                                <li><a href="product.html">化妆品</a></li>
+                            </ul>
+                        </li>
+                        <ul class="kid-menu ">
+                            <li><a href="product.html">鞋类</a></li>
+                            <li class="menu-kid-left"><a href="chat.html">联系我们</a></li>
+                        </ul>
+                    </ul>
+                </div>
+                <!--initiate accordion-->
+                <script type="text/javascript">
+                    $(function () {
+                        var menu_ul = $('.menu > li > ul'),
+                            menu_a = $('.menu > li > a');
+                        menu_ul.hide();
+                        menu_a.click(function (e) {
+                            e.preventDefault();
+                            if (!$(this).hasClass('active')) {
+                                menu_a.removeClass('active');
+                                menu_ul.filter(':visible').slideUp('normal');
+                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                            } else {
+                                $(this).removeClass('active');
+                                $(this).next().stop(true, true).slideUp('normal');
+                            }
+                        });
+
+                    });
+                </script>
+                <a class="view-all all-product" href="product.html">查看所有商品<span> </span></a>
+            </div>
         </div>
-<div class="sub-cate">
-    <div class=" top-nav rsidebar span_1_of_left">
-        <h3 class="cate">分类</h3>
-        <ul class="menu">
-            <li class="item1"><a href="#">食品 </a>
-
-            </li>
-            <li class="item2"><a href="#">百货 </a>
-
-            </li>
-            <li class="item3"><a href="#">服饰 </a>
-
-            </li>
-            <li class="item4"><a href="#">数码设备 </a>
-            </li>
-            <li>
-                <ul class="kid-menu">
-                    <li><a href="product.html">优惠券</a></li>
-                    <li><a href="product.html">拼单</a></li>
-                    <li><a href="product.html">化妆品</a></li>
-                </ul>
-            </li>
-            <ul class="kid-menu ">
-                <li><a href="product.html">鞋类</a></li>
-                <li class="menu-kid-left"><a href="contact.html">联系我们</a></li>
-            </ul>
-        </ul>
+        <!---->
     </div>
-    <!--initiate accordion-->
-    <script type="text/javascript">
-        $(function () {
-            var menu_ul = $('.menu > li > ul'),
-                menu_a = $('.menu > li > a');
-            menu_ul.hide();
-            menu_a.click(function (e) {
-                e.preventDefault();
-                if (!$(this).hasClass('active')) {
-                    menu_a.removeClass('active');
-                    menu_ul.filter(':visible').slideUp('normal');
-                    $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                } else {
-                    $(this).removeClass('active');
-                    $(this).next().stop(true, true).slideUp('normal');
-                }
-            });
-
-        });
-    </script>
-    <a class="view-all all-product" href="product.html">查看所有商品<span> </span></a>
 </div>
-</div>
-<!---->
+<script src="js/connection_mysql.js"></script>
+<script src="js/User.js"></script>
 </body>
 <script type="text/javascript" src="js/product.js"></script>
 </html>
