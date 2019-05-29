@@ -9,6 +9,11 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
+var new_element=document.createElement("script");
+new_element.setAttribute("type","text/javascript");
+new_element.setAttribute("src","product.js");// 在这里引入了a.js
+document.body.appendChild(new_element);
+
 // 登录函数
 function Find_user(email,password,func){
 
@@ -206,17 +211,17 @@ function Change_cart(email,pid,number,func){
 function Search(key,func){
 
     var sql='SELECT * FROM products';
-
+    // alert(1);
     // 逻辑放在callback中避免异步执行问题
     function callback(rows){
         var res;
         res=rows;
-
+    alert(2);
         res=res.map(function(item) {
             item.lcs = lcs(key,item.name);
             return item;
         })
-
+    // alert(3);
         res=res.filter(function(item) {
             if (item.lcs > 0) {
                 return item;
@@ -233,6 +238,7 @@ function Search(key,func){
 
     function query(callback){
         connection.query(sql,function(err,rows){
+            alert(4);
             if(err) {
                 func(null);
             }
@@ -271,9 +277,9 @@ function print(msg) {
     console.log("\n--->>\nresult:",msg);
 }
 
-Find_user('000001','1111',print);
-
-connection.end();
+// Find_user('000001','1111',print);
+// Search('a',updateindexpro);
+// connection.end();
 //mysql -udatabase -h 172.26.22.71 --port 2347 -p  进入到远程服务器数据库的操作
 // 密码 shujuku
 
