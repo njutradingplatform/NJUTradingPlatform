@@ -45,8 +45,8 @@ function ai_help(msg,func) {
 //     //balabala0
 // }
 
-// function print(msg) {
-//     console.log("\n--->>\nresult:",msg);
-// }
-//
-// ai_help('你好',print);
+function print(msg) {
+    console.log("\n--->>\nresult:",msg);
+}
+
+ai_help('你好',print);
