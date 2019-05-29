@@ -20,12 +20,12 @@ function Find_user(email,password,func){
         var result;
         result=rows;
         var state; //表示查询结果的状态变量
-        if (judge==0){
+        if (judge===0){
             state=-1;
             // email password 都不正确
-        }else if(judge==1){
+        }else if(judge===1){
 
-            if(result[0].password==password){
+            if(result[0].password===password){
                 state=1;
                 // email password 都正确
             }
@@ -39,10 +39,10 @@ function Find_user(email,password,func){
     function query(callback){
         connection.query(sql,function(err,rows){
            var judge=1; //判断变量是否存在用户名
-            if(rows.length==0) {
+            if(rows.length===0) {
                 judge = 0;
             }
-            console.log(judge)
+            console.log(judge);
             callback(rows,judge);
         })
     }
@@ -51,7 +51,6 @@ function Find_user(email,password,func){
 }
 
 // 获取用户信息函数
-
 function Get_users(email,func){
     var sql='SELECT * FROM users WHERE user_email='+email;
 
@@ -70,14 +69,14 @@ function Get_users(email,func){
 function registration(email,password,first_name,last_name,func){
 
     // email 为数据库查询结果
-    var sql='SELECT * FROM users WHERE user_email='+email;
+    var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
 
     //插入数据操作
-    var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES ('+email+', '+password+', '+first_name+', '+last_name+')';
+    var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+',\' '+first_name+'\',\' '+last_name+'\')';
 
     function callback(judge){
         var state=2; //表示查询结果的状态变量 1为成功
-        if(judge==1){
+        if(judge===1){
             state=-2;
             // email 已经存在
             func(state);
@@ -272,7 +271,7 @@ function print(msg) {
     console.log("\n--->>\nresult:",msg);
 }
 
-Find_user('0001','111111',print);
+Find_user('000001','1111',print);
 
 connection.end();
 //mysql -udatabase -h 172.26.22.71 --port 2347 -p  进入到远程服务器数据库的操作
