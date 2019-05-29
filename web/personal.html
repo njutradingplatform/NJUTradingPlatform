@@ -38,7 +38,7 @@
             </div>
             <div class="top-header-right">
                 <ul class="touxiang">
-                    <li><a herf="login.html">用户名</a></li>
+                    <li><a href="register.html"><span> </span>用户名</a></li>
                 </ul>
                 <ul class="top-header-right">
                     <li class="van"><a href="#"></a></li>
@@ -87,19 +87,21 @@
             <h3 class="text-center"> 个人账户信息</h3>
             <h4 class="txtitle">头像</h4>
             <div style="text-align: left"><a class="txcss"><img class="img-responsive chain"
-                                                                                   src="images/Cover.jpg"
-                                                                                   alt=""/> </a>
+                                                                src="images/Cover.jpg"
+                                                                alt=""/> </a>
             </div>
             <div style="text-align: center">
                 <input type="submit" value="修改">
             </div>
             <div>
                 <form>
-                    邮箱地址：:<input type="text" name="fname" value="xxxxxx@xxx.com">
+                    邮箱地址：<input type="text" name="email" value="" readonly>
                     <br>
-                    新密码：<input type="text" name="email" value="xxxxxx">
+                    新密码：<input type="password" name="newpasswd" value="密码仅允许输入数字和大小写字母，长度不超过12位"
+                               pattern="[A-Za-z0-9]{12}">
                     <br>
-                    再输入一次新密码：<input type="text" name="qq" value="xxxxxxxxx">
+                    再输入一次新密码：<input type="password" name="newpasswdagain" value="密码仅允许输入数字和大小写字母，长度不超过12位"
+                                    pattern="[A-Za-z0-9]{12}">
                     <div style="text-align: center">
                         <input type="submit" value="修改">
                     </div>
