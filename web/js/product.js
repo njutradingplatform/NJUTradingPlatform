@@ -205,10 +205,7 @@ function addcart() {
         tr.appendChild(td5);
         tr.appendChild(td6);
         tr.appendChild(td7);
-        alert(tr.innerHTML);
-        alert(insert.innerHTML);
-        insert.innerText='?>?????';
-        alert('cg');
+        insert[0].appendChild(tr);
     }
 
 
