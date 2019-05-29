@@ -14,7 +14,6 @@ function Login() {
         passwd = Request["passwd"];
 
     }
-
 }
 
 function Init(state,username,passwd) {
