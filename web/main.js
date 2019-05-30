@@ -1,6 +1,16 @@
-response.setHeader("Access-Control-Allow-Origin", "*");
+// response.setHeader("Access-Control-Allow-Origin", "*");
 var express =require("express");
 var app=express();
+
+var allowCors = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials','true');
+    next();
+};
+app.use(allowCors);//使用跨域中间件
+
 app.use(express.static(".")).listen(80);
 
 app.post('/search', function (req, res) {
