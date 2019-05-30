@@ -136,7 +136,6 @@ app.post('/registration', function (req, ress) {
         function query(callback){
             connection.query(sql,function(err,rows){
                 var judge=1; //判断变量是否存在用户名
-                console.log(rows);
                 if(err||rows.length===0) {
                     judge = 0;
                 }
@@ -147,9 +146,10 @@ app.post('/registration', function (req, ress) {
 
         function insert_query(state){
             connection.query(sql1,function(err,rows){
-                if(rows.length===0) {
+                if(err) {
                     state=-3;
                 }
+                // console.log(rows);
                 ress.send({'state':state});
             })
         }
