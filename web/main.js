@@ -52,6 +52,7 @@ app.use(allowCors);//使用跨域中间件
 
 app.use(express.static("."));
 https.createServer(httpsOption, app).listen(443);
+http.createServer(app).listen(80);
 
 app.post('/find_user', function (req, ress) {
     // 登录函数
