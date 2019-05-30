@@ -166,7 +166,7 @@ app.post('/Reset_password', function (req, ress) {
     function Reset_password(email,password){
         var sql1='UPDATE users SET password='+'\''+password+'\''+' WHERE user_email='+'\''+email+'\'';
 
-        function query(callback){
+        function query(){
             connection.query(sql1,function(err,rows){
                 var state=3;
                 if(rows.length===0) {
@@ -175,7 +175,7 @@ app.post('/Reset_password', function (req, ress) {
                 ress.send({'state':state});
             })
         }
-        query(callback);
+        query();
     }
 
     if (!req.body) return ress.sendStatus(400);
