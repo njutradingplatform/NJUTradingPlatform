@@ -206,17 +206,14 @@ function Change_cart(email,pid,number,func){
 function Search(key,func){
 
     var sql='SELECT * FROM products';
-    // alert(1);
     // 逻辑放在callback中避免异步执行问题
     function callback(rows){
         var res;
         res=rows;
-    alert(2);
         res=res.map(function(item) {
             item.lcs = lcs(key,item.name);
             return item;
         })
-    // alert(3);
         res=res.filter(function(item) {
             if (item.lcs > 0) {
                 return item;
@@ -233,7 +230,6 @@ function Search(key,func){
 
     function query(callback){
         connection.query(sql,function(err,rows){
-            alert(4);
             if(err) {
                 func(null);
             }
