@@ -94,14 +94,12 @@
                 <input type="submit" value="修改">
             </div>
             <div>
-                <form>
-                    邮箱地址：<input type="text" name="email" value="" readonly>
+                <form name="change_pass" onsubmit="ChangePass()">
+                    邮箱地址：<input type="text" name="email" value="" readonly id="email_name">
                     <br>
-                    新密码：(密码仅允许输入数字和大小写字母，长度不超过12位)<input type="password" name="newpasswd"
-                               pattern="[A-Za-z0-9]{12}" value="密码仅允许输入数字和大小写字母，长度不超过12位">
+                    新密码：(密码仅允许输入数字和大小写字母，长度不超过12位)<input type="password" name="newpasswd1" value="">
                     <br>
-                    再输入一次新密码：<input type="password" name="newpasswdagain" value="密码仅允许输入数字和大小写字母，长度不超过12位"
-                                    pattern="[A-Za-z0-9]{12}">
+                    再输入一次新密码：<input type="password" name="newpasswd2" value="" >
                     <div style="text-align: center">
                         <input type="submit" value="修改">
                     </div>
@@ -142,10 +140,11 @@
     <div class="clearfix"></div>
 </div>
 <!---->
-<script src="js/connection_mysql.js"></script>
+<script src="js/api.js"></script>
+<!--<script src="js/connection_mysql.js"></script>-->
 <script src="js/User.js"></script>
 <script>
-
+    IfLogin();
 </script>
 
 </body>

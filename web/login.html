@@ -86,16 +86,16 @@
         <div class=" login-right">
             <h3>已注册用户</h3>
             <p>如果已有账户请登陆</p>
-            <form>
+            <form onsubmit="Login_button()">
                 <div>
 					<span>邮箱地址
 					<label>*</label></span>
-                    <input type="text">
+                    <input type="text" id="email">
                 </div>
                 <div>
 					<span>密码
 					<label>*</label></span>
-                    <input type="text">
+                    <input type="password" id="passwd">
                 </div>
                 <a class="forgot" href="#">忘记密码?</a>
                 <input type="submit" value="登陆">
@@ -139,7 +139,7 @@
     <div class="clearfix"></div>
 </div>
 <!---->
-<script src="js/connection_mysql.js"></script>
+<script src="js/api.js"></script>
 <script src="js/User.js"></script>
 </body>
 </html>
