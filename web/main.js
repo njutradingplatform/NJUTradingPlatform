@@ -9,199 +9,6 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
-// 登录函数
-function Find_user(email,password,func){
-
-    // email 为数据库查询结果
-    var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
-
-    console.log(sql);
-    function callback(rows,judge){
-        var result;
-        result=rows;
-        var state; //表示查询结果的状态变量
-        if (judge===0){
-            state=-1;
-            // email password 都不正确
-        }else if(judge===1){
-
-            if(result[0].password===password){
-                state=1;
-                // email password 都正确
-            }
-            else{
-                state=0;
-                //email 正确 password 不正确
-            }
-        }
-        func(state);
-    }
-    function query(callback){
-        connection.query(sql,function(err,rows){
-            var judge=1; //判断变量是否存在用户名
-            if(rows.length===0) {
-                judge = 0;
-            }
-            console.log(judge);
-            callback(rows,judge);
-        })
-    }
-    query(callback);
-
-}
-
-// 获取用户信息函数
-function Get_users(email,func){
-    var sql='SELECT * FROM users WHERE user_email='+email;
-
-    function query(){
-        connection.query(sql,function(err,rows){
-            if(err) {
-                func(null);
-            }
-            func(rows);
-        })
-    }
-    query();
-}
-
-//用户注册函数
-function registration(email,password,first_name,last_name,func){
-
-    // email 为数据库查询结果
-    var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
-
-    //插入数据操作
-    var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+',\' '+first_name+'\',\' '+last_name+'\')';
-
-    function callback(judge){
-        var state=2; //表示查询结果的状态变量 1为成功
-        if(judge===1){
-            state=-2;
-            // email 已经存在
-            func(state);
-        }
-        //判断操作
-        else
-        {
-            insert_query(state);
-        }
-    }
-    function query(callback){
-        connection.query(sql,function(err,rows){
-            var judge=1; //判断变量是否存在用户名
-            if(err) {
-                judge = 0;
-            }
-            callback(judge)
-        })
-    }
-    query(callback);
-
-    function insert_query(state){
-        connection.query(sql1,function(err,rows){
-            if(err) {
-                state=-3;
-            }
-            func(state);
-        })
-    }
-
-}
-
-
-
-
-// 修改密码函数
-function Reset_password(email,password,func){
-    var sql1='UPDATE users SET password='+password+' WHERE user_email='+email;
-
-    function query(callback){
-        connection.query(sql1,function(err,rows){
-            var state=3;
-            if(err) {
-                state=-4;
-            }
-            func(state);
-        })
-    }
-    query(callback);
-}
-
-// 添加购物车函数
-function Add_cart(email,pid,number,func){
-    // 查询商品表中商品的数量
-    var sql='SELECT * FROM products WHERE id='+pid;
-
-    //插入数据操作
-    var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
-
-    function callback(rows,judge){
-        var state=-1; //表示查询结果的状态变量 -1为添加数量超过已有数量
-        if(rows[0].number<number){
-            func(state);  //表明购物车中商品数量超过商品数量
-        }else{
-            insert_query(state);
-        }
-    }
-    function query(callback){
-        connection.query(sql,function(err,rows){
-            var judge=1; //判断变量是否存在用户名
-            if(err) {
-                judge = 0;
-                return;
-            }
-            callback(rows,judge);
-        })
-    }
-    query(callback);
-
-    function insert_query(state){
-        connection.query(sql1,function(err,rows){
-            if(err) {
-                state=-1;
-            }else
-            {
-                state=1;    //1表示添加成功
-            }
-            func(state);
-        })
-    }
-
-}
-
-// 删除购物车中的这条记录
-function delete_cart(email,pid,func){
-    var sql='SELECT  FROM shopping_cart WHERE pid = '+pid+' AND user_email = '+email;
-
-    function query(){
-        connection.query(sql,function(err,rows){
-            var judge=1; //判断变量是否存在用户名
-            if(err) {
-                judge = 0;
-            }
-            func(judge);
-        })
-    }
-    query();
-}
-
-//修改购物车这个商品的数量
-function Change_cart(email,pid,number,func){
-    var sql='UPDATE shopping_cart SET number = '+number+' WHERE user_email = '+email+'AND pid = '+pid;
-
-    function query(){
-        connection.query(sql,function(err,rows){
-            var judge=1; //判断变量是否存在用户名
-            if(err) {
-                judge = 0;
-            }
-            func(judge);
-        })
-    }
-    query();
-}
-
 
 function print(msg) {
     console.log("\n--->>\nresult:",msg);
@@ -231,6 +38,237 @@ var allowCors = function(req, res, next) {
 app.use(allowCors);//使用跨域中间件
 
 app.use(express.static(".")).listen(80);
+
+app.post('/find_user', function (req, ress) {
+    // 登录函数
+    function Find_user(email,password){
+
+        // email 为数据库查询结果
+        var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
+
+        // console.log(sql);
+        function callback(rows,judge){
+            var result;
+            result=rows;
+            var state; //表示查询结果的状态变量
+            if (judge===0){
+                state=-1;
+                // email password 都不正确
+            }else if(judge===1){
+
+                if(result[0].password===password){
+                    state=1;
+                    // email password 都正确
+                }
+                else{
+                    state=0;
+                    //email 正确 password 不正确
+                }
+            }
+            ress.send({"state":state});
+        }
+        function query(callback){
+            connection.query(sql,function(err,rows){
+                var judge=1; //判断变量是否存在用户名
+                if(rows.length===0) {
+                    judge = 0;
+                }
+                // console.log(judge);
+                callback(rows,judge);
+            })
+        }
+        query(callback);
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Find_user(req.body.email,req.body.password);
+});
+
+app.post('/get_user', function (req, ress) {
+    // 获取用户信息函数
+    function Get_users(email){
+        var sql='SELECT * FROM users WHERE user_email='+email;
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+    }
+    
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Get_users(req.body.email);
+});
+
+app.post('/registration', function (req, ress) {
+    //用户注册函数
+    function registration(email,password,first_name,last_name){
+
+        // email 为数据库查询结果
+        var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
+
+        //插入数据操作
+        var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+',\' '+first_name+'\',\' '+last_name+'\')';
+
+        function callback(judge){
+            var state=2; //表示查询结果的状态变量 1为成功
+            if(judge===1){
+                state=-2;
+                // email 已经存在
+                ress.send({'state':state});
+            }
+            //判断操作
+            else
+            {
+                insert_query(state);
+            }
+        }
+        function query(callback){
+            connection.query(sql,function(err,rows){
+                var judge=1; //判断变量是否存在用户名
+                if(err) {
+                    judge = 0;
+                }
+                callback(judge)
+            })
+        }
+        query(callback);
+
+        function insert_query(state){
+            connection.query(sql1,function(err,rows){
+                if(err) {
+                    state=-3;
+                }
+                ress.send({'state':state});
+            })
+        }
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    registration(req.body.email,req.body.password,req.body.first_name,req.body.last_name);
+});
+
+app.post('/Reset_password', function (req, ress) {
+    // 修改密码函数
+    function Reset_password(email,password){
+        var sql1='UPDATE users SET password='+password+' WHERE user_email='+email;
+
+        function query(callback){
+            connection.query(sql1,function(err,rows){
+                var state=3;
+                if(err) {
+                    state=-4;
+                }
+                ress.send({'state':state});
+            })
+        }
+        query(callback);
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Reset_password(req.body.email,req.body.password);
+});
+
+app.post('/Add_cart', function (req, ress) {
+    // 添加购物车函数
+    function Add_cart(email,pid,number){
+        // 查询商品表中商品的数量
+        var sql='SELECT * FROM products WHERE id='+pid;
+
+        //插入数据操作
+        var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
+
+        function callback(rows,judge){
+            var state=-1; //表示查询结果的状态变量 -1为添加数量超过已有数量
+            if(rows[0].number<number){
+                ress.send({'state':state});  //表明购物车中商品数量超过商品数量
+            }else{
+                insert_query(state);
+            }
+        }
+        function query(callback){
+            connection.query(sql,function(err,rows){
+                var judge=1; //判断变量是否存在用户名
+                if(err) {
+                    judge = 0;
+                    return;
+                }
+                callback(rows,judge);
+            })
+        }
+        query(callback);
+
+        function insert_query(state){
+            connection.query(sql1,function(err,rows){
+                if(err) {
+                    state=-1;
+                }else
+                {
+                    state=1;    //1表示添加成功
+                }
+                ress.send({'state':state});
+            })
+        }
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Add_cart(req.body.email,req.body.pid,req.body.number);
+});
+
+app.post('/delete_cart', function (req, ress) {
+    // 删除购物车中的这条记录
+    function delete_cart(email,pid){
+        var sql='SELECT  FROM shopping_cart WHERE pid = '+pid+' AND user_email = '+email;
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                var judge=1; //判断变量是否存在用户名
+                if(err) {
+                    judge = 0;
+                }
+                ress.send({'state':judge});
+            })
+        }
+        query();
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    delete_cart(req.body.email,req.body.pid);
+});
+
+app.post('/Change_cart', function (req, ress) {
+    //修改购物车这个商品的数量
+    function Change_cart(email,pid,number){
+        var sql='UPDATE shopping_cart SET number = '+number+' WHERE user_email = '+email+'AND pid = '+pid;
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                var judge=1; //判断变量是否存在用户名
+                if(err) {
+                    judge = 0;
+                }
+                ress.send({'state':judge});
+            })
+        }
+        query();
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Change_cart(req.body.email,req.body.pid,req.body.number);
+});
 
 app.post('/search', function (req, ress) {
     // 搜索函数
@@ -264,7 +302,14 @@ app.post('/search', function (req, ress) {
                 if(err) {
                     ress.send(null);
                 }
-                callback(rows)
+                if(key=='')
+                {
+                    ress.send(rows);
+                }else
+                {
+                    callback(rows);
+                }
+
             })
         }
 
@@ -298,6 +343,6 @@ app.post('/search', function (req, ress) {
     if (!req.body) return ress.sendStatus(400);
     // console.log(req.body.text);
     Search(req.body.text);
-    // res.send({"status":"success", "name": req.body.name, "age": req.body.age});
 });
+
 
