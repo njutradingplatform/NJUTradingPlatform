@@ -94,7 +94,7 @@ app.post('/find_user', function (req, ress) {
 app.post('/get_user', function (req, ress) {
     // 获取用户信息函数
     function Get_users(email){
-        var sql='SELECT * FROM users WHERE user_email='+email;
+        var sql='SELECT * FROM users WHERE user_email='+'\''email+'\'';
         function query(){
             connection.query(sql,function(err,rows){
                 if(rows.length===0) {
