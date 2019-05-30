@@ -55,9 +55,8 @@
             <div class="header-bottom-left">
                 <div class="logo"><a href="index.html"></a></div>
                 <div class="search">
-                    <input type="text" value="" onfocus="this.value = '';"
-                           onblur="if (this.value == '') {this.value = '';}">
-                    <input type="submit" value="搜索">
+                    <input type="text" value="" id="searchtext">
+                    <input type="submit" value="搜索" onclick="getandshowsearch()">
                 </div>
                 <img src="images/headtitle.png" width="250" height="73" alt=""/></div>
             <div class="header-bottom-right">
