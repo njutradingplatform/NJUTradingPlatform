@@ -33,11 +33,14 @@ function Init(username, passwd) {
             st[0].children[0].children[0].href = "personal.html?username=" + escape(username) + "&passwd=" + escape(passwd);
             var tempUrl = "?username=" + escape(username) + "&passwd=" + escape(passwd);
             var logo = document.getElementsByClassName("logo");
-            logo[0].children[0].href += tempUrl;
+            logo[0].style.visibility="hidden";
+            //logo[0].children[0].href += tempUrl;
             var login = document.getElementsByClassName("login");
-            login[0].children[0].href = "#"
+            login[0].style.visibility="hidden";
+            //login[0].children[0].href = "#"
             var signin = document.getElementsByClassName("signin");
-            signin[0].children[0].href = "#";
+            //signin[0].children[0].href = "#";
+            signin[0].style.visibility="hidden";
             var cart = document.getElementsByClassName("cart");
             cart[0].children[0].href += tempUrl;
             var view = document.getElementsByClassName("view-all all-product");
@@ -94,10 +97,12 @@ function ChangePass() {
             alert("请确保两次输入的密码一致");
             var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
             window.open(url);
+            window.close();
         } else if (!myreg.test(newpass1)) {
             alert("只能输入6-20个字母、数字、下划线");
             var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
             window.open(url);
+            window.close();
         } else {
             var state = Reset_password_api(username, newpass1);
             if (state === 3) {
@@ -105,10 +110,12 @@ function ChangePass() {
                 alert("修改成功");
                 var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
                 window.open(url);
+                window.close();
             } else {
                 alert("修改失败，请重新输入");
                 var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
                 window.open(url);
+                window.close();
             }
         }
     } else {
@@ -150,6 +157,7 @@ function Register() {
                 window.passwd = passwd1;
                 var url="index.html?username=" + escape(username) + "&passwd=" + escape(passwd);
                 window.open(url);
+                window.close();
                 break;
             default:
                 alert("网络忙，注册失败");
@@ -184,6 +192,8 @@ function Login_button() {
                 alert("登陆成功");
                 var url="index.html?username=" + escape(username) + "&passwd=" + escape(passwd);
                 window.open(url);
+                window.close();
+                //window.location.href=url;
                 break;
         }
     }
