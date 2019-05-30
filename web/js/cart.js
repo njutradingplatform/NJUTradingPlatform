@@ -31,7 +31,7 @@ if (Request["password"] !== undefined)
     var insert=document.getElementsByClassName("addcarts");
     for(i=0;i<msg.length;i++)
     {
-        alert('st');
+        // alert('st');
         var tr=document.createElement("tr");
         var td1=document.createElement("td");
         var td2=document.createElement("td");
