@@ -367,7 +367,7 @@ app.post('/Default_products', function (req, ress) {
 
     }
 
-    if (!req.body) return ress.sendStatus(400);
+    // if (!req.body) return ress.sendStatus(400);
     // console.log(req.body.text);
     Default_products();
 });
@@ -444,7 +444,7 @@ app.post('/Recommendation', function (req, ress) {
 
     }
 
-    if (!req.body) return ress.sendStatus(400);
+    // if (!req.body) return ress.sendStatus(400);
     // console.log(req.body.text);
     Recommendation();
 });
@@ -472,4 +472,51 @@ app.post("/image",function (req,res) {
         fs.renameSync(files.the_file.path, newPath);  //重命名
         res.send({data:"/upload/"+avatarName})
     })
+});
+
+app.post('/find_product', function (req, ress) {
+    function find_product(pid){
+        var sql='SELECT * FROM products WHERE id='+pid;
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    find_product(req.body.pid);
+});
+
+app.post('/initialization_shopping_cart', function (req, ress) {
+    function initialization_shopping_cart(pid,email){
+        var sql='SELECT s.id, s.pid, s.number, s.user_email, p.price, p.cid, p.number stock, p.seller, p.description,\n' +
+            'p.image_path, p.name\n' +
+            'FROM shopping_cart s\n' +
+            'INNER JOIN products p\n' +
+            'ON s.pid =p.id \n' +
+            'WHERE s.pid='+pid +'AND user_email= \''+email+'\'';
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    initialization_shopping_cart(req.body.pid,req.body.email);
 });

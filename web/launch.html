@@ -88,10 +88,11 @@
                                onblur="if (this.value == '') {this.value = '价格';}">
                         <textarea value="商品描述" onfocus="this.value= '';"
                                   onblur="if (this.value == '') {this.value = '商品描述';}">Message</textarea>
-                        <form id="uploadForm" enctype="multipart/form-data" method="post" action="XXXXXX">
+                        <form id="uploadForm" enctype="multipart/form-data" method="post" action="http://172.26.22.71:2346/image
+">
                             <input type="file" name="imageFile" id="imageFile" onchange="fileSelected()"/>
                         </form>
-                        <input type="submit" value="提交">
+                        <input type="submit" value="提交" onclick="fileSelected()">
                         <div class="clearfix"></div>
                     </form>
                     <address class="address">
@@ -164,7 +165,7 @@
     </div>
 </div>
 <!---->
-<script src="js/connection_mysql.js"></script>
+<script src="js/index.js"></script>
 <script src="js/User.js"></script>
 </body>
 </html>
