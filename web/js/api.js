@@ -3,7 +3,7 @@
 function search_api(msg) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://192.168.31.30:80/search", false);
+    xhr.open("POST", "http://172.26.22.71:2346/search", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
