@@ -221,3 +221,7 @@ function upgrade(username) {
     //根据username获得数据库数据
     // 利用得到数据库数据更新当前购物车 根据数据库增加
 }
+function aisupport() {
+    var text=document.getElementById("ai");
+    alert(ai_api(text.value));
+}
