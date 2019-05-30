@@ -307,8 +307,7 @@ app.post('/search', function (req, ress) {
                 if(rows.length===0) {
                     console.log(rows);
                     ress.send([]);
-                }
-                if(key=='')
+                }else if(key=='')
                 {
                     console.log(rows);
                     ress.send(rows);

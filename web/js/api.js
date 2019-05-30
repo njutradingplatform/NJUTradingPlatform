@@ -1,7 +1,6 @@
 // http://172.26.22.71:2346/
 
 function search_api(msg) {
-    alert(123);
     var result=[];
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://172.26.22.71:2346/search", false);
