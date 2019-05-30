@@ -94,7 +94,7 @@ app.post('/find_user', function (req, ress) {
 app.post('/get_user', function (req, ress) {
     // 获取用户信息函数
     function Get_users(email){
-        var sql='SELECT * FROM users WHERE user_email='+email;
+        var sql='SELECT * FROM users WHERE user_email='+'\''+email+'\'';
         function query(){
             connection.query(sql,function(err,rows){
                 if(rows.length===0) {
@@ -113,13 +113,14 @@ app.post('/get_user', function (req, ress) {
 
 app.post('/registration', function (req, ress) {
     //用户注册函数
+    console.log("aaa");
     function registration(email,password,first_name,last_name){
 
         // email 为数据库查询结果
         var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
 
         //插入数据操作
-        var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+',\' '+first_name+'\',\' '+last_name+'\')';
+        var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+'\', \''+first_name+'\',\' '+last_name+'\')';
 
         function callback(judge){
             var state=2; //表示查询结果的状态变量 1为成功
@@ -127,9 +128,7 @@ app.post('/registration', function (req, ress) {
                 state=-2;
                 // email 已经存在
                 ress.send({'state':state});
-            }
-            //判断操作
-            else
+            }else
             {
                 insert_query(state);
             }
@@ -137,7 +136,7 @@ app.post('/registration', function (req, ress) {
         function query(callback){
             connection.query(sql,function(err,rows){
                 var judge=1; //判断变量是否存在用户名
-                if(rows.length===0) {
+                if(err||rows.length===0) {
                     judge = 0;
                 }
                 callback(judge)
@@ -147,9 +146,10 @@ app.post('/registration', function (req, ress) {
 
         function insert_query(state){
             connection.query(sql1,function(err,rows){
-                if(rows.length===0) {
+                if(err) {
                     state=-3;
                 }
+                // console.log(rows);
                 ress.send({'state':state});
             })
         }
@@ -157,14 +157,14 @@ app.post('/registration', function (req, ress) {
     }
 
     if (!req.body) return ress.sendStatus(400);
-    // console.log(req.body.text);
+    console.log(req.body.email);
     registration(req.body.email,req.body.password,req.body.first_name,req.body.last_name);
 });
 
 app.post('/Reset_password', function (req, ress) {
     // 修改密码函数
     function Reset_password(email,password){
-        var sql1='UPDATE users SET password='+password+' WHERE user_email='+email;
+        var sql1='UPDATE users SET password='+'\''+password+'\''+' WHERE user_email='+'\''+email+'\'';
 
         function query(callback){
             connection.query(sql1,function(err,rows){
@@ -190,7 +190,7 @@ app.post('/Add_cart', function (req, ress) {
         var sql='SELECT * FROM products WHERE id='+pid;
 
         //插入数据操作
-        var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
+        var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+'\''+email+'\''+')';
 
         function callback(rows,judge){
             var state=-5; //表示查询结果的状态变量 -1为添加数量超过已有数量
@@ -234,7 +234,7 @@ app.post('/Add_cart', function (req, ress) {
 app.post('/delete_cart', function (req, ress) {
     // 删除购物车中的这条记录
     function delete_cart(email,pid){
-        var sql='SELECT  FROM shopping_cart WHERE pid = '+pid+' AND user_email = '+email;
+        var sql='SELECT  FROM shopping_cart WHERE pid = '+pid+' AND user_email = '+'\''+email+'\'';
 
         function query(){
             connection.query(sql,function(err,rows){
@@ -256,7 +256,7 @@ app.post('/delete_cart', function (req, ress) {
 app.post('/Change_cart', function (req, ress) {
     //修改购物车这个商品的数量
     function Change_cart(email,pid,number){
-        var sql='UPDATE shopping_cart SET number = '+number+' WHERE user_email = '+email+'AND pid = '+pid;
+        var sql='UPDATE shopping_cart SET number = '+number+' WHERE user_email = '+'\''+email+'\''+'AND pid = '+pid;
 
         function query(){
             connection.query(sql,function(err,rows){
@@ -298,17 +298,18 @@ app.post('/search', function (req, ress) {
             res=res.sort(function(a,b){
                 return a.lcs - b.lcs
             });
-
+            console.log(res);
             ress.send(res);
         }
 
         function query(callback){
             connection.query(sql,function(err,rows){
                 if(rows.length===0) {
-                    ress.send(null);
-                }
-                if(key=='')
+                    console.log(rows);
+                    ress.send([]);
+                }else if(key=='')
                 {
+                    console.log(rows);
                     ress.send(rows);
                 }else
                 {
@@ -366,7 +367,7 @@ app.post('/Default_products', function (req, ress) {
 
     }
 
-    if (!req.body) return ress.sendStatus(400);
+    // if (!req.body) return ress.sendStatus(400);
     // console.log(req.body.text);
     Default_products();
 });
@@ -443,7 +444,7 @@ app.post('/Recommendation', function (req, ress) {
 
     }
 
-    if (!req.body) return ress.sendStatus(400);
+    // if (!req.body) return ress.sendStatus(400);
     // console.log(req.body.text);
     Recommendation();
 });
@@ -471,4 +472,51 @@ app.post("/image",function (req,res) {
         fs.renameSync(files.the_file.path, newPath);  //重命名
         res.send({data:"/upload/"+avatarName})
     })
+});
+
+app.post('/find_product', function (req, ress) {
+    function find_product(pid){
+        var sql='SELECT * FROM products WHERE id='+pid;
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    find_product(req.body.pid);
+});
+
+app.post('/initialization_shopping_cart', function (req, ress) {
+    function initialization_shopping_cart(pid,email){
+        var sql='SELECT s.id, s.pid, s.number, s.user_email, p.price, p.cid, p.number stock, p.seller, p.description,\n' +
+            'p.image_path, p.name\n' +
+            'FROM shopping_cart s\n' +
+            'INNER JOIN products p\n' +
+            'ON s.pid =p.id \n' +
+            'WHERE s.pid='+pid +'AND user_email= \''+email+'\'';
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    initialization_shopping_cart(req.body.pid,req.body.email);
 });

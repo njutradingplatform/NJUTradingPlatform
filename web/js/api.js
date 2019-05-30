@@ -64,7 +64,7 @@ function Get_user_api(username) {
 function registration_api(username,password,first_name,last_name) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/get_user", false);
+    xhr.open("POST", "http://172.26.22.71:2346/registration", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -195,7 +195,7 @@ function Payment_api(email,pid,number) {
     return result;
 }
 
-function Recommendation(email,pid,number) {
+function Recommendation() {
     var result=[];
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://172.26.22.71:2346/Recommendation", false);
@@ -206,6 +206,21 @@ function Recommendation(email,pid,number) {
         }
     }
     xhr.send(JSON.stringify({"email":"username"}));
+    // alert(result);
+    return result;
+}
+
+function initialization_shopping_cart_api(pid,email) {
+    var result=[];
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://172.26.22.71:2346/initialization_shopping_cart", false);
+    xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            result=JSON.parse(xhr.responseText);
+        }
+    }
+    xhr.send(JSON.stringify({"pid":pid,"email":email}));
     // alert(result);
     return result;
 }

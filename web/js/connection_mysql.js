@@ -352,6 +352,40 @@ function Recommendation(func){
 
 }
 
+function find_product(pid,func){
+    var sql='SELECT * FROM products WHERE id='+pid;
+
+    function query(){
+        connection.query(sql,function(err,rows){
+            if(err) {
+                func(null);
+            }
+            func(rows);
+        })
+    }
+    query();
+
+}
+
+function initialization_shopping_cart(pid,email,func){
+    var sql='SELECT s.id, s.pid, s.number, s.user_email, p.price, p.cid, p.number stock, p.seller, p.description,\n' +
+        'p.image_path, p.name\n' +
+        'FROM shopping_cart s\n' +
+        'INNER JOIN products p\n' +
+        'ON s.pid =p.id \n' +
+        'WHERE s.pid='+pid +'AND user_email= \''+email+'\'';
+
+    function query(){
+        connection.query(sql,function(err,rows){
+            if(err) {
+                func(null);
+            }
+            func(rows);
+        })
+    }
+    query();
+
+}
 
 Find_user('000001','1111',print);
 
