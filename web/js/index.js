@@ -11,7 +11,7 @@ if (url.indexOf("?") !== -1) {
         Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
     }
 }
-alert(strs);
+// alert(strs);
 if (Request["index"] !== undefined)
     index = Request["index"];
 if (Request["username"] !== undefined)
@@ -55,6 +55,7 @@ var msg=search_api('p');
     for(i=0;i<ch.length;i++)
     {
         ch[i].src=msg[i].image_path;//照片
+        // alert(ch[i].src);
         chpr[i].innerText=msg[i].price;//价格
         chalink[i].href='single.html?username='+username+'&password='+password+'&index='+msg[i].id;//链接
     }
@@ -118,7 +119,7 @@ function shoe() {
 }
 function cart() {
     var index = 'cart';
-    var url = 'cart.html?username=whw&password=219&index='+index;
+    var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
     window.open(url);
 }
 function contact() {

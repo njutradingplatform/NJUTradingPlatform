@@ -18,24 +18,32 @@ if (Request["username"] !== undefined)
     username = Request["username"];
 if (Request["password"] !== undefined)
     password = Request["password"];
-alert(index);
-alert(username);
-
-var imgin=document.getElementsByClassName("etalage_source_image");
+// alert(index);
+// alert(username);
+var idnumber=parseInt(index);
+var msg=find_product_api(idnumber);
+// alert(msg.length);
+// alert(msg[0].image_path);
+var imgin=document.getElementById("imgss");
 var img=document.getElementsByClassName("etalage_thumb_image");
 var n=document.getElementsByClassName("h1name");
 var p=document.getElementsByClassName("price");
-alert(img.length);
-alert(imgin.length);
-for(i=0;i<imgin.length;i++)
-{
-    imgin[i].src="images/ba.jpg";
-}
-n[0].innerText="jdosa";
-p[0].innerText=200;
+// alert(img.length);
+// alert(imgin.length);
+// alert(imgin.src);
+imgin.src=msg[0].image_path;
+// alert(msg[0].image_path);
+// alert(imgin.src);
+n[0].innerText=msg[0].name;
+p[0].innerText=msg[0].price;
 function singleaddtocart() {
     //已得到pid username 和 number
     Add_cart_api(username,index,1);
     alert("添加成功");
+}
+function cart() {
+    var index = 'cart';
+    var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
+    window.open(url);
 }
 

@@ -18,14 +18,14 @@ if (Request["username"] !== undefined)
     username = Request["username"];
 if (Request["password"] !== undefined)
     password = Request["password"];
-alert(index);
+// alert(index);
 // alert(username);
 //获得username
 //获得index进行search
 // function Searchproduct(msg) {
     //alert(msg.length);
     var msg=search_api(''+index);
-    alert(msg.length);
+    // alert(msg.length);
     var picturegrid=document.getElementsByClassName("img-responsive watch-right");
     var linkgrid=document.getElementsByClassName("gotosingle");
     // alert(picturegrid.length);
@@ -79,11 +79,11 @@ alert(index);
         insert[0].appendChild(divproductgrid);
     }
 //    页面增加
-    var arr = new Array();
-    arr[0]=arr[1]=arr[2]=arr[3]=arr[4]=arr[5]=arr[6]=arr[7]=arr[8]='cart.html';
-    arr[9]=arr[10]='single.html'
-    var gotolink=document.querySelectorAll(".gotosingle")
-    alert(gotolink.length);
+//     var arr = new Array();
+//     arr[0]=arr[1]=arr[2]=arr[3]=arr[4]=arr[5]=arr[6]=arr[7]=arr[8]='cart.html';
+//     arr[9]=arr[10]='single.html'
+//     var gotolink=document.querySelectorAll(".gotosingle")
+//     alert(gotolink.length);
     /*for(i=0;i<gotolink.length;i++)
     {
         gotolink[i].onclick=function () {
@@ -95,3 +95,8 @@ alert(index);
         }
     }*/
 // }
+function cart() {
+    var index = 'cart';
+    var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
+    window.open(url);
+}

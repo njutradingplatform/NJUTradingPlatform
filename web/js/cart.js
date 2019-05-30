@@ -22,11 +22,14 @@ if (Request["password"] !== undefined)
  alert(username);
 //获得username
 //初始化addcart()
-function addcart(msg) {
+//function addcart(msg) {
     //先得到增加的长度 以及数
     //初始化数据
+    var msg=initialization_shopping_cart_api('000001');
+    alert(msg.length);
+    alert(msg[0].image_path);
     var insert=document.getElementsByClassName("addcarts");
-    for(i=0;i<4;i++)
+    for(i=0;i<msg.length;i++)
     {
         alert('st');
         var tr=document.createElement("tr");
@@ -37,12 +40,12 @@ function addcart(msg) {
         var td5=document.createElement("td");
         var td6=document.createElement("td");
         var td7=document.createElement("td");
-        td1.innerHTML=i;//msg[i].id;
-        td2.innerHTML="<img src='images/ba.jpg' width=\"150\" height=\"150\" alt=\"\">";
-        td3.innerHTML=1;//msg[i].des;
-        td4.innerHTML=2;//msg[i].price;
-        td5.innerHTML=3;//msg[i].number;
-        td6.innerHTML=4;//msg[i].price*msg[i].number;
+        td1.innerHTML=msg[i].id;
+        td2.innerHTML="<img src='"+msg[i].image_path+ "' width='150' height='150' alt=''>";
+        td3.innerHTML=msg[i].description;
+        td4.innerHTML=msg[i].price;
+        td5.innerHTML=msg[i].number;
+        td6.innerHTML=msg[i].price*msg[i].number;
         td7.innerHTML="<input type='button' class='del' value='删除'>";
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -63,7 +66,7 @@ function addcart(msg) {
         }
     }
 //    更改msg返回数据库
-}
+// }
 /* function clearall(msg) {
     var total=0;
     for(i=0;i<msg.length)
@@ -72,3 +75,8 @@ function addcart(msg) {
     }
 }*/
 //结算
+function cart() {
+    var index = 'cart';
+    var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
+    window.open(url);
+}
