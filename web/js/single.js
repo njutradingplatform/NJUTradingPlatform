@@ -11,7 +11,7 @@ if (url.indexOf("?") !== -1) {
         Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
     }
 }
-alert(strs);
+// alert(strs);
 if (Request["index"] !== undefined)
     index = Request["index"];
 if (Request["username"] !== undefined)
