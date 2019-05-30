@@ -145,3 +145,22 @@ function Change_cart_api(email,pid,number) {
     // alert(result);
     return result;
 }
+
+function ai_api(msg) {
+    var result=[];
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://114.212.101.15:8125/encode", false);
+    xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            result=JSON.parse(xhr.responseText).result[0][0];
+        }
+    }
+    xhr.send(JSON.stringify({
+        "id": 123,
+        "texts": [msg],
+        "is_tokenized": false
+    }));
+    // alert(result);
+    return result;
+}
