@@ -298,17 +298,19 @@ app.post('/search', function (req, ress) {
             res=res.sort(function(a,b){
                 return a.lcs - b.lcs
             });
-
+            console.log(res);
             ress.send(res);
         }
 
         function query(callback){
             connection.query(sql,function(err,rows){
                 if(rows.length===0) {
-                    ress.send(null);
+                    console.log(rows);
+                    ress.send([]);
                 }
                 if(key=='')
                 {
+                    console.log(rows);
                     ress.send(rows);
                 }else
                 {
