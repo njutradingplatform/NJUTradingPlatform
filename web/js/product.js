@@ -100,3 +100,10 @@ function cart() {
     var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
     window.open(url);
 }
+function getandshowsearch(){
+    var text=document.getElementById("searchtext");
+    // alert(text.value);
+    var index = text.value;
+    var url = 'product.html?username='+username+'&password='+password+'&index='+index;
+    window.open(url);
+}
