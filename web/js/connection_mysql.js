@@ -9,11 +9,6 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
-var new_element=document.createElement("script");
-new_element.setAttribute("type","text/javascript");
-new_element.setAttribute("src","product.js");// 在这里引入了a.js
-document.body.appendChild(new_element);
-
 // 登录函数
 function Find_user(email,password,func){
 
