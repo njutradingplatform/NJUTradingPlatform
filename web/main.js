@@ -21,6 +21,11 @@ function print(msg) {
 //mysql -udatabase -h 172.26.22.71 --port 2347 -p  进入到远程服务器数据库的操作
 // 密码 shujuku
 
+var path = require("path");
+var fs = require("fs");
+
+var formidable = require('formidable');
+
 var express =require("express");
 var bodyParser = require('body-parser');
 var app=express();
@@ -345,4 +350,125 @@ app.post('/search', function (req, ress) {
     Search(req.body.text);
 });
 
+app.post('/Default_products', function (req, ress) {
+    function Default_products(){
+        var sql='SELECT * FROM products';
 
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Default_products();
+});
+
+app.post('/Payment', function (req, ress) {
+    //修改购物车这个商品的数量
+    function Payment(pid,number){
+        var sql='SELECT * FROM products WHERE id='+pid;
+
+        // 逻辑放在callback中避免异步执行问题
+        function callback(rows){
+            var res;
+            res=rows;
+
+            if(res[0].number>=number){
+                var sql1='UPDATE products SET number='+res[0].number-number+''+', sales='+res[0].sales+number+' WHERE id='+pid;
+
+                function query1(){
+                    connection.query(sql1,function(err,rows){
+                        if(err) {
+                            ress.send({"state":-1});
+                        }
+                        ress.send({"state":1});
+                    })
+                }
+                query1();
+
+
+            }
+
+        }
+
+        function query(callback){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send({"state":-1});
+                }
+                callback(rows);
+            })
+        }
+        query(callback);
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Payment(req.body.pid,req.body.number);
+});
+
+app.post('/Recommendation', function (req, ress) {
+    function Recommendation(){
+        var sql='SELECT * FROM products';
+
+        function callback(rows){
+            var res;
+            res=rows;
+
+            res=res.sort(function(a,b){
+                return a.sales - b.sales
+            });
+
+            ress.send(res);
+        }
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                callback(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Recommendation();
+});
+
+app.post("/image",function (req,res) {
+    var form = new formidable.IncomingForm();
+    form.encoding = 'utf-8';
+    form.uploadDir = path.join(__dirname + "/../page/upload");
+    form.keepExtensions = true;//保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024;
+    //处理图片
+    form.parse(req, function (err, fields, files){
+        console.log(files.the_file);
+        var filename = files.the_file.name
+        var nameArray = filename.split('.');
+        var type = nameArray[nameArray.length - 1];
+        var name = '';
+        for (var i = 0; i < nameArray.length - 1; i++) {
+            name = name + nameArray[i];
+        }
+        var date = new Date();
+        var time = '_' + date.getFullYear() + "_" + date.getMonth() + "_" + date.getDay() + "_" + date.getHours() + "_" + date.getMinutes();
+        var avatarName = name + time + '.' + type;
+        var newPath = form.uploadDir + "/" + avatarName;
+        fs.renameSync(files.the_file.path, newPath);  //重命名
+        res.send({data:"/upload/"+avatarName})
+    })
+});
