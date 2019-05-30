@@ -135,7 +135,7 @@ function getandshowsearch(){
     var text=document.getElementById("searchtext");
     // alert(text.value);
     var index = text.value;
-    var url = 'product.html?username=whw&password=219&index='+index;
+    var url = 'product.html?username='+username+'&password='+password+'&index='+index;
     window.open(url);
 }
 function addshelf(msg) {

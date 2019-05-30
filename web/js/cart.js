@@ -25,7 +25,7 @@ if (Request["password"] !== undefined)
 //function addcart(msg) {
     //先得到增加的长度 以及数
     //初始化数据
-    var msg=initialization_shopping_cart_api('000001');
+    var msg=initialization_shopping_cart_api(''+username);
     alert(msg.length);
     alert(msg[0].image_path);
     var insert=document.getElementsByClassName("addcarts");
