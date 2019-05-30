@@ -1,4 +1,5 @@
 var url = location.search;
+
 var username, passwd;
 var loginState = false;
 var Request = {};
@@ -26,6 +27,7 @@ function IfLogin() {
 function Init(username, passwd) {
     if (typeof (username) !== "undefined" && typeof (passwd) !== "undefined") {
         if (username !== "" && passwd !== "") {
+            //alert("time");
             var st = document.getElementsByClassName("touxiang");
             st[0].children[0].children[0].innerText = username;
             st[0].children[0].children[0].href = "personal.html?username=" + escape(username) + "&passwd=" + escape(passwd);
@@ -90,16 +92,23 @@ function ChangePass() {
         var myreg = /^(\w){6,20}$/;
         if (newpass1 !== newpass2) {
             alert("请确保两次输入的密码一致");
+            var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
+            window.open(url);
         } else if (!myreg.test(newpass1)) {
             alert("只能输入6-20个字母、数字、下划线");
+            var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
+            window.open(url);
         } else {
             var state = Reset_password_api(username, newpass1);
             if (state === 3) {
                 window.passwd = newpass1;
                 alert("修改成功");
-                Init(window.username, window.passwd);
+                var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
+                window.open(url);
             } else {
                 alert("修改失败，请重新输入");
+                var url="index.html?username=" + escape(username) + "&passwd=" + escape(window.passwd);
+                window.open(url);
             }
         }
     } else {
@@ -108,6 +117,8 @@ function ChangePass() {
 }
 
 function Register() {
+    //alert("in");
+    //alert(url);
     var firstname = "abc";
     var lastname = "abc";
     var email = document.getElementById("email").value;
@@ -123,8 +134,9 @@ function Register() {
     } else if (!passreg.test(passwd1)) {
         alert("只能输入6-20个字母、数字、下划线");
     } else {
+        //alert("123");
         var state = registration_api(email, passwd1, firstname, lastname);
-        alert(state);
+        //alert(state);
         switch (state) {
             case -2:
                 alert("用户已存在");
@@ -136,7 +148,8 @@ function Register() {
                 alert("注册成功");
                 window.username = email;
                 window.passwd = passwd1;
-                Init(email, passwd1);
+                var url="index.html?username=" + escape(username) + "&passwd=" + escape(passwd);
+                window.open(url);
                 break;
             default:
                 alert("网络忙，注册失败");
@@ -165,12 +178,12 @@ function Login_button() {
                 alert("密码错误");
                 break;
             case 1:
-                alert("登陆成功");
                 loginState = true;
                 window.username = email;
                 window.passwd = passwd;
                 alert("登陆成功");
-                Init(window.username, window.passwd);
+                var url="index.html?username=" + escape(username) + "&passwd=" + escape(passwd);
+                window.open(url);
                 break;
         }
     }
