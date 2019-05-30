@@ -92,7 +92,7 @@ app.post('/get_user', function (req, ress) {
         var sql='SELECT * FROM users WHERE user_email='+email;
         function query(){
             connection.query(sql,function(err,rows){
-                if(err) {
+                if(rows.length===0) {
                     ress.send([]);
                 }
                 ress.send(rows);
@@ -132,7 +132,7 @@ app.post('/registration', function (req, ress) {
         function query(callback){
             connection.query(sql,function(err,rows){
                 var judge=1; //判断变量是否存在用户名
-                if(err) {
+                if(rows.length===0) {
                     judge = 0;
                 }
                 callback(judge)
@@ -142,7 +142,7 @@ app.post('/registration', function (req, ress) {
 
         function insert_query(state){
             connection.query(sql1,function(err,rows){
-                if(err) {
+                if(rows.length===0) {
                     state=-3;
                 }
                 ress.send({'state':state});
@@ -164,7 +164,7 @@ app.post('/Reset_password', function (req, ress) {
         function query(callback){
             connection.query(sql1,function(err,rows){
                 var state=3;
-                if(err) {
+                if(rows.length===0) {
                     state=-4;
                 }
                 ress.send({'state':state});
@@ -188,7 +188,7 @@ app.post('/Add_cart', function (req, ress) {
         var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
 
         function callback(rows,judge){
-            var state=-1; //表示查询结果的状态变量 -1为添加数量超过已有数量
+            var state=-5; //表示查询结果的状态变量 -1为添加数量超过已有数量
             if(rows[0].number<number){
                 ress.send({'state':state});  //表明购物车中商品数量超过商品数量
             }else{
@@ -198,9 +198,9 @@ app.post('/Add_cart', function (req, ress) {
         function query(callback){
             connection.query(sql,function(err,rows){
                 var judge=1; //判断变量是否存在用户名
-                if(err) {
+                if(rows.length===0) {
                     judge = 0;
-                    return;
+                    ress.send({'state':-6});
                 }
                 callback(rows,judge);
             })
@@ -209,11 +209,11 @@ app.post('/Add_cart', function (req, ress) {
 
         function insert_query(state){
             connection.query(sql1,function(err,rows){
-                if(err) {
-                    state=-1;
+                if(rows.length===0) {
+                    state=-7;
                 }else
                 {
-                    state=1;    //1表示添加成功
+                    state=5;    //1表示添加成功
                 }
                 ress.send({'state':state});
             })
@@ -233,9 +233,9 @@ app.post('/delete_cart', function (req, ress) {
 
         function query(){
             connection.query(sql,function(err,rows){
-                var judge=1; //判断变量是否存在用户名
-                if(err) {
-                    judge = 0;
+                var judge=8; //判断变量是否存在用户名
+                if(rows.length===0) {
+                    judge = -8;
                 }
                 ress.send({'state':judge});
             })
@@ -255,9 +255,9 @@ app.post('/Change_cart', function (req, ress) {
 
         function query(){
             connection.query(sql,function(err,rows){
-                var judge=1; //判断变量是否存在用户名
-                if(err) {
-                    judge = 0;
+                var judge=9; //判断变量是否存在用户名
+                if(rows.length===0) {
+                    judge = -9;
                 }
                 ress.send({'state':judge});
             })
@@ -299,7 +299,7 @@ app.post('/search', function (req, ress) {
 
         function query(callback){
             connection.query(sql,function(err,rows){
-                if(err) {
+                if(rows.length===0) {
                     ress.send(null);
                 }
                 if(key=='')

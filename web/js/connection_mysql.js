@@ -137,7 +137,7 @@ function Add_cart(email,pid,number,func){
     var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
 
     function callback(rows,judge){
-        var state=-1; //表示查询结果的状态变量 -1为添加数量超过已有数量
+        var state=-5; //表示查询结果的状态变量 -1为添加数量超过已有数量
         if(rows[0].number<number){
             func(state);  //表明购物车中商品数量超过商品数量
         }else{

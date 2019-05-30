@@ -25,6 +25,9 @@ function search_api(msg) {
     return result;
 }
 
+//-1 用户名不存在
+//0 密码错误
+//1 正确
 function Find_user_api(username,password) {
     var result=[];
     var xhr = new XMLHttpRequest();
@@ -55,6 +58,9 @@ function Get_user_api(username) {
     return result;
 }
 
+//-2 用户已存在
+//2 注册成功
+//-3 失败
 function registration_api(username,password,first_name,last_name) {
     var result=[];
     var xhr = new XMLHttpRequest();
@@ -70,6 +76,8 @@ function registration_api(username,password,first_name,last_name) {
     return result;
 }
 
+//3 成功
+//-4 失败
 function Reset_password_api(username,password) {
     var result=[];
     var xhr = new XMLHttpRequest();
@@ -85,6 +93,10 @@ function Reset_password_api(username,password) {
     return result;
 }
 
+//5成功
+//-5超出库存数量
+//-6用户名不存在
+//-7插入失败
 function Add_cart_api(username,pid,number) {
     var result=[];
     var xhr = new XMLHttpRequest();
@@ -100,6 +112,8 @@ function Add_cart_api(username,pid,number) {
     return result;
 }
 
+//8 成功
+//-8 失败
 function delete_cart_api(username,pid) {
     var result=[];
     var xhr = new XMLHttpRequest();
@@ -115,6 +129,8 @@ function delete_cart_api(username,pid) {
     return result;
 }
 
+//9 成功
+//-9 失败
 function Change_cart_api(email,pid,number) {
     var result=[];
     var xhr = new XMLHttpRequest();
