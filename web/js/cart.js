@@ -11,23 +11,23 @@ if (url.indexOf("?") !== -1) {
         Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
     }
 }
-alert(strs);
+// alert(strs);
 if (Request["index"] !== undefined)
     index = Request["index"];
 if (Request["username"] !== undefined)
     username = Request["username"];
 if (Request["password"] !== undefined)
     password = Request["password"];
- alert(index);
- alert(username);
+ // alert(index);
+ // alert(username);
 //获得username
 //初始化addcart()
 //function addcart(msg) {
     //先得到增加的长度 以及数
     //初始化数据
     var msg=initialization_shopping_cart_api(''+username);
-    alert(msg.length);
-    alert(msg[0].image_path);
+    // alert(msg.length);
+    // alert(msg[0].image_path);
     var insert=document.getElementsByClassName("addcarts");
     for(i=0;i<msg.length;i++)
     {
@@ -57,7 +57,7 @@ if (Request["password"] !== undefined)
         insert[0].appendChild(tr);
     }
     var dels=document.querySelectorAll(".del")
-    alert(dels.length);
+    // alert(dels.length);
     for(i=0;i<dels.length;i++)
     {
         dels[i].onclick=function () {
