@@ -137,7 +137,7 @@ function Add_cart(email,pid,number,func){
     var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
 
     function callback(rows,judge){
-        var state=-5; //表示查询结果的状态变量 -1为添加数量超过已有数量
+        var state=-1; //表示查询结果的状态变量 -1为添加数量超过已有数量
         if(rows[0].number<number){
             func(state);  //表明购物车中商品数量超过商品数量
         }else{
@@ -206,14 +206,17 @@ function Change_cart(email,pid,number,func){
 function Search(key,func){
 
     var sql='SELECT * FROM products';
+
     // 逻辑放在callback中避免异步执行问题
     function callback(rows){
         var res;
         res=rows;
+
         res=res.map(function(item) {
             item.lcs = lcs(key,item.name);
             return item;
         })
+
         res=res.filter(function(item) {
             if (item.lcs > 0) {
                 return item;
@@ -268,13 +271,92 @@ function print(msg) {
     console.log("\n--->>\nresult:",msg);
 }
 
-module.exports = {
-    Search
+function Default_products(func){
+    var sql='SELECT * FROM products';
+
+    function query(){
+        connection.query(sql,function(err,rows){
+            if(err) {
+                func(null);
+            }
+            func(rows);
+        })
+    }
+    query();
+
 }
 
-// Find_user('000001','1111',print);
-// Search('a',updateindexpro);
-// connection.end();
+function Payment(pid,number,func){
+    var sql='SELECT * FROM products WHERE id='+pid;
+
+    // 逻辑放在callback中避免异步执行问题
+    function callback(rows){
+        var res;
+        res=rows;
+
+        if(res[0].number>=number){
+            var sql1='UPDATE products SET number='+res[0].number-number+''+', sales='+res[0].sales+number+' WHERE id='+pid;
+
+            function query1(){
+                connection.query(sql1,function(err,rows){
+                    if(err) {
+                        func(null);
+                    }
+                    //func(rows);
+                })
+            }
+            query1();
+
+
+        }
+
+    }
+
+    function query(callback){
+        connection.query(sql,function(err,rows){
+            if(err) {
+                func(null);
+            }
+            callback(rows);
+        })
+    }
+    query(callback);
+
+}
+
+function Recommendation(func){
+
+    var sql='SELECT * FROM products';
+
+    function callback(rows){
+        var res;
+        res=rows;
+
+
+        res=res.sort(function(a,b){
+            return a.sales - b.sales
+        });
+
+        func(res);
+    }
+
+    function query(){
+        connection.query(sql,function(err,rows){
+            if(err) {
+                func(null);
+            }
+            callback(rows);
+        })
+    }
+    query();
+
+}
+
+
+Find_user('000001','1111',print);
+
+
+connection.end();
 //mysql -udatabase -h 172.26.22.71 --port 2347 -p  进入到远程服务器数据库的操作
 // 密码 shujuku
 
