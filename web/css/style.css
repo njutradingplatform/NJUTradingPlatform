@@ -1178,10 +1178,17 @@ h4.m_3 {
 	text-transform: uppercase;
 }
 .login-right input[type="text"] {
-	border: 1px solid #DDDBDB;
+	border: 2px solid #DDDBDB;
 	outline-color:#fb4d01;
 	width: 96%;
 	font-size:0.9em;
+	padding:10px;
+}
+.login-right input[type="password"]{
+	border: 2px solid #DDDBDB;
+	outline-color:#fb4d01;
+	width: 96%;
+	font-size:1em;
 	padding:10px;
 }
 .login-right input[type="submit"] {
