@@ -21,8 +21,8 @@ app.use(express.static(".")).listen(80);
 
 app.post('/search', function (req, res) {
     if (!req.body) return res.sendStatus(400);
-    console.log(req.body)
-    sql.Search(req.body,res.send)
+    console.log(req.body);
+    sql.Search(req.body,res.send);
     // res.send({"status":"success", "name": req.body.name, "age": req.body.age});
 });
 

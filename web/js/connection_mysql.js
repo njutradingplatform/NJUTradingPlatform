@@ -272,6 +272,10 @@ function print(msg) {
     console.log("\n--->>\nresult:",msg);
 }
 
+module.exports = {
+    Search
+}
+
 // Find_user('000001','1111',print);
 // Search('a',updateindexpro);
 // connection.end();
