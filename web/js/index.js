@@ -22,7 +22,8 @@ if (Request["password"] !== undefined)
 // alert(username);
 //获得username
 //初始化index商品
-function updateindexpro(msg) {
+var msg=search_api('p');
+// function updateindexpro(msg) {
     //得到json数据类型
     var ch = document.getElementsByClassName("img-responsive banner-bag");
     var cha = document.getElementsByClassName("img-responsive shoe-left");
@@ -41,41 +42,40 @@ function updateindexpro(msg) {
     //alert(ch.length)
     //alert(chpr.length)
     //alert(chainlink.length)
-    alert(spanname.length);
-    alert(h6name.length);
-    for(i=0;i<2;i++)
+    // alert(spanname.length);
+    // alert(h6name.length);
+    for(i=0;i<spanname.length;i++)
     {
         spanname[i].innerText=msg[i].name;
     }
     for(i=0;i<h6name.length;i++)
     {
-        h6name[i].innerText='ha?';//msg[i+5]
+        h6name[i].innerText=msg[i+5].name
     }
     for(i=0;i<ch.length;i++)
     {
-        ch[i].src='images/ba.jpg';//照片
-        chpr[i].innerText='666';//价格
-        chalink[i].href='cart.html';//链接
+        ch[i].src=msg[i].image_path;//照片
+        chpr[i].innerText=msg[i].price;//价格
+        chalink[i].href='single.html?username='+username+'&password='+password+'&index='+msg[i].id;//链接
     }
-    //循环更改页面浮动改变的三张照片
+    //循环更改页面浮动改变的三张照片 链接加index获得商品id
     for(i=0;i<cha.length;i++)
     {
-        cha[i].src='images/pic7.jpg';//照片
-        chapr[i].innerText='666';//价格
-        if(i>ch.length)
-            chalink[i].href='cart.html';//链接
+        cha[i].src=msg[i+3].image_path;//照片
+        chapr[i].innerText=msg[i+3].price;//价格
+        chalink[i+3].href='single.html?username='+username+'&password='+password+'&index='+msg[i+3].id;//链接
     }
     //循环更改下方get-now的两张照片
     for(i=0;i<chchain.length;i++)
     {
-        chchain[i].src='images/ba.jpg';//照片
-        chainpr[i].innerText='777';
-        chainrealpri[i].innerText='666';//价格
-        chainlink[i].href='single.html';//链接
+        chchain[i].src=msg[i+5].image_path;//照片
+        chainpr[i].innerText=msg[i+5].price;
+        chainrealpri[i].innerText=msg[i+5].price;//价格
+        chainlink[i].href='single.html?username='+username+'&password='+password+'&index='+msg[i+5].id;//链接
     }
     //循环更改chain里的图
 
-}
+// }
 function food() {
     var index = 'food';
     var url = 'product.html?username='+username+'&password='+password+'&index='+index;
@@ -132,7 +132,7 @@ function contact() {
 
 function getandshowsearch(){
     var text=document.getElementById("searchtext");
-    alert(text.value);
+    // alert(text.value);
     var index = text.value;
     var url = 'product.html?username=whw&password=219&index='+index;
     window.open(url);
@@ -202,7 +202,7 @@ window.fileSelected = function() {
     oXHR.addEventListener('abort', function() {
         //上传中断
     }, false);
-    oXHR.open('POST', actionUrl);
+    oXHR.open('POST', 'http://172.26.22.71:2346/image');
     oXHR.send(vFD);
 };
 
