@@ -64,7 +64,7 @@ function Get_user_api(username) {
 function registration_api(username,password,first_name,last_name) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/get_user", false);
+    xhr.open("POST", "http://172.26.22.71:2346/registration", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {

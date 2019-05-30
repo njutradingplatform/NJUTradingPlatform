@@ -127,9 +127,7 @@ app.post('/registration', function (req, ress) {
                 state=-2;
                 // email 已经存在
                 ress.send({'state':state});
-            }
-            //判断操作
-            else
+            }else
             {
                 insert_query(state);
             }
@@ -137,7 +135,7 @@ app.post('/registration', function (req, ress) {
         function query(callback){
             connection.query(sql,function(err,rows){
                 var judge=1; //判断变量是否存在用户名
-                if(rows.length===0) {
+                if(err||rows.length===0) {
                     judge = 0;
                 }
                 callback(judge)
