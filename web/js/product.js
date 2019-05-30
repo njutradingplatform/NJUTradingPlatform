@@ -16,8 +16,8 @@ if (Request["index"] !== undefined)
     index = Request["index"];
 if (Request["username"] !== undefined)
     username = Request["username"];
-if (Request["password"] !== undefined)
-    password = Request["password"];
+if (Request["passwd"] !== undefined)
+    password = Request["passwd"];
 // alert(index);
 // alert(username);
 //获得username
