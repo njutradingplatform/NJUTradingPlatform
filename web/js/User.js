@@ -1,6 +1,6 @@
 function Login() {
     var url = location.search;
-    var username,passwd;
+    var username,cpasswd;
     var Request = {};
     if (url.indexOf("?") !== -1) {
         var str = url.substr(1)　//去掉?号

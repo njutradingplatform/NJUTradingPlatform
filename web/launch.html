@@ -86,8 +86,11 @@
                                onblur="if (this.value == '') {this.value = '名称';}">
                         <input type="text" class="textbox" value="价格" onfocus="this.value = '';"
                                onblur="if (this.value == '') {this.value = '价格';}">
-                        <textarea value="图片" onfocus="this.value= '';"
-                                  onblur="if (this.value == '') {this.value = '图片';}">Message</textarea>
+                        <textarea value="商品描述" onfocus="this.value= '';"
+                                  onblur="if (this.value == '') {this.value = '商品描述';}">Message</textarea>
+                        <form id="uploadForm" enctype="multipart/form-data" method="post" action="XXXXXX">
+                            <input type="file" name="imageFile" id="imageFile" onchange="fileSelected()"/>
+                        </form>
                         <input type="submit" value="提交">
                         <div class="clearfix"></div>
                     </form>
