@@ -210,6 +210,21 @@ function Recommendation() {
     return result;
 }
 
+function find_product_api(pid) {
+    var result=[];
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://172.26.22.71:2346/find_product", false);
+    xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            result=JSON.parse(xhr.responseText);
+        }
+    }
+    xhr.send(JSON.stringify({"pid":pid}));
+    // alert(result);
+    return result;
+}
+
 function initialization_shopping_cart_api(email) {
     var result=[];
     var xhr = new XMLHttpRequest();
