@@ -164,7 +164,7 @@ app.post('/registration', function (req, ress) {
 app.post('/Reset_password', function (req, ress) {
     // 修改密码函数
     function Reset_password(email,password){
-        var sql1='UPDATE users SET password='+password+' WHERE user_email='+email;
+        var sql1='UPDATE users SET password='+'\''+password+'\''+' WHERE user_email='+'\''+email+'\'';
 
         function query(callback){
             connection.query(sql1,function(err,rows){
@@ -190,7 +190,7 @@ app.post('/Add_cart', function (req, ress) {
         var sql='SELECT * FROM products WHERE id='+pid;
 
         //插入数据操作
-        var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+email+')';
+        var sql1='INSERT INTO shopping_cart (pid,number,user_email) VALUES ('+pid+', '+number+', '+'\''+email+'\''+')';
 
         function callback(rows,judge){
             var state=-5; //表示查询结果的状态变量 -1为添加数量超过已有数量
@@ -234,7 +234,7 @@ app.post('/Add_cart', function (req, ress) {
 app.post('/delete_cart', function (req, ress) {
     // 删除购物车中的这条记录
     function delete_cart(email,pid){
-        var sql='SELECT  FROM shopping_cart WHERE pid = '+pid+' AND user_email = '+email;
+        var sql='SELECT  FROM shopping_cart WHERE pid = '+pid+' AND user_email = '+'\''+email+'\'';
 
         function query(){
             connection.query(sql,function(err,rows){
@@ -256,7 +256,7 @@ app.post('/delete_cart', function (req, ress) {
 app.post('/Change_cart', function (req, ress) {
     //修改购物车这个商品的数量
     function Change_cart(email,pid,number){
-        var sql='UPDATE shopping_cart SET number = '+number+' WHERE user_email = '+email+'AND pid = '+pid;
+        var sql='UPDATE shopping_cart SET number = '+number+' WHERE user_email = '+'\''+email+'\''+'AND pid = '+pid;
 
         function query(){
             connection.query(sql,function(err,rows){
