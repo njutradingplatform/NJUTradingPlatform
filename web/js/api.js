@@ -1,9 +1,9 @@
-// http://172.26.22.71:2346/
+// https://172.26.22.71/
 
 function search_api(msg) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/search", false);
+    xhr.open("POST", "https://172.26.22.71/search", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -31,7 +31,7 @@ function search_api(msg) {
 function Find_user_api(username,password) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/find_user", false);
+    xhr.open("POST", "https://172.26.22.71/find_user", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -46,7 +46,7 @@ function Find_user_api(username,password) {
 function Get_user_api(username) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/get_user", false);
+    xhr.open("POST", "https://172.26.22.71/get_user", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -64,7 +64,7 @@ function Get_user_api(username) {
 function registration_api(username,password,first_name,last_name) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/registration", false);
+    xhr.open("POST", "https://172.26.22.71/registration", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -81,7 +81,7 @@ function registration_api(username,password,first_name,last_name) {
 function Reset_password_api(username,password) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/Reset_password", false);
+    xhr.open("POST", "https://172.26.22.71/Reset_password", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -100,7 +100,7 @@ function Reset_password_api(username,password) {
 function Add_cart_api(username,pid,number) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/Add_cart", false);
+    xhr.open("POST", "https://172.26.22.71/Add_cart", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -117,7 +117,7 @@ function Add_cart_api(username,pid,number) {
 function delete_cart_api(username,pid) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/delete_cart", false);
+    xhr.open("POST", "https://172.26.22.71/delete_cart", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -134,7 +134,7 @@ function delete_cart_api(username,pid) {
 function Change_cart_api(email,pid,number) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/Change_cart", false);
+    xhr.open("POST", "https://172.26.22.71/Change_cart", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -168,7 +168,7 @@ function ai_api(msg) {
 function Default_products_api() {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/Default_products", false);
+    xhr.open("POST", "https://172.26.22.71/Default_products", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -183,7 +183,7 @@ function Default_products_api() {
 function Payment_api(email,pid,number) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/Payment", false);
+    xhr.open("POST", "https://172.26.22.71/Payment", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -198,7 +198,7 @@ function Payment_api(email,pid,number) {
 function Recommendation() {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/Recommendation", false);
+    xhr.open("POST", "https://172.26.22.71/Recommendation", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -213,7 +213,7 @@ function Recommendation() {
 function find_product_api(pid) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/find_product", false);
+    xhr.open("POST", "https://172.26.22.71/find_product", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
@@ -228,7 +228,7 @@ function find_product_api(pid) {
 function initialization_shopping_cart_api(email) {
     var result=[];
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://172.26.22.71:2346/initialization_shopping_cart", false);
+    xhr.open("POST", "https://172.26.22.71/initialization_shopping_cart", false);
     xhr.setRequestHeader('content-type', 'application/json'); // 设置 HTTP 头，数据指定为 JSON 格式
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
