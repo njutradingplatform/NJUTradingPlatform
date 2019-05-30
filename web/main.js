@@ -120,7 +120,7 @@ app.post('/registration', function (req, ress) {
         var sql='SELECT * FROM users WHERE user_email=\''+email+'\'';
 
         //插入数据操作
-        var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+',\' '+first_name+'\',\' '+last_name+'\')';
+        var sql1='INSERT INTO users (user_email,password,first_name,last_name) VALUES (\''+email+'\', \''+password+'\', \''+first_name+'\',\' '+last_name+'\')';
 
         function callback(judge){
             var state=2; //表示查询结果的状态变量 1为成功
