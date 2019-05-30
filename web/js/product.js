@@ -60,7 +60,7 @@ if (Request["passwd"] !== undefined)
         divleft.appendChild(divmask);
         // alert(divleft.innerHTML);
         agotosingle.className='gotosingle';
-        agotosingle.href='single.html?username='+username+'&password='+password+'&index='+msg[i].id;
+        agotosingle.href='single.html?username='+username+'&passwd='+password+'&index='+msg[i].id;
         //直接添加对应的single.html+id然后查看
         agotosingle.appendChild(divleft);
         //链接需要添加onclick
@@ -102,13 +102,13 @@ function cart() {
         window.close();
     }
     var index = 'cart';
-    var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
+    var url = 'cart.html?username='+username+'&passwd='+password+'&index='+index;
     window.open(url);
 }
 function getandshowsearch(){
     var text=document.getElementById("searchtext");
     // alert(text.value);
     var index = text.value;
-    var url = 'product.html?username='+username+'&password='+password+'&index='+index;
+    var url = 'product.html?username='+username+'&passwd='+password+'&index='+index;
     window.open(url);
 }

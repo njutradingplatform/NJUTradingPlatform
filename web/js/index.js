@@ -54,69 +54,69 @@ for (i = 0; i < ch.length; i++) {
     ch[i].src = msg[i].image_path;//照片
     // alert(ch[i].src);
     chpr[i].innerText = msg[i].price;//价格
-    chalink[i].href = 'single.html?username=' + username + '&password=' + password + '&index=' + msg[i].id;//链接
+    chalink[i].href = 'single.html?username=' + username + '&passwd=' + password + '&index=' + msg[i].id;//链接
 }
 //循环更改页面浮动改变的三张照片 链接加index获得商品id
 for (i = 0; i < cha.length; i++) {
     cha[i].src = msg[i + 3].image_path;//照片
     chapr[i].innerText = msg[i + 3].price;//价格
-    chalink[i + 3].href = 'single.html?username=' + username + '&password=' + password + '&index=' + msg[i + 3].id;//链接
+    chalink[i + 3].href = 'single.html?username=' + username + '&passwd=' + password + '&index=' + msg[i + 3].id;//链接
 }
 //循环更改下方get-now的两张照片
 for (i = 0; i < chchain.length; i++) {
     chchain[i].src = msg[i + 5].image_path;//照片
     chainpr[i].innerText = msg[i + 5].price;
     chainrealpri[i].innerText = msg[i + 5].price;//价格
-    chainlink[i].href = 'single.html?username=' + username + '&password=' + password + '&index=' + msg[i + 5].id;//链接
+    chainlink[i].href = 'single.html?username=' + username + '&passwd=' + password + '&index=' + msg[i + 5].id;//链接
 }
 //循环更改chain里的图
 
 // }
 function food() {
     var index = 'food';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function grocery() {
     var index = 'grocery';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function cloth() {
     var index = 'cloth';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function digital() {
     var index = 'digital';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function coupon() {
     var index = 'coupon';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function share() {
     var index = 'share';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function cosmetic() {
     var index = 'cosmetic';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function shoe() {
     var index = 'shoe';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
@@ -127,13 +127,13 @@ function cart() {
         window.close();
     }
     var index = 'cart';
-    var url = 'cart.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'cart.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
 function contact() {
     var index = 'contact';
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
@@ -144,7 +144,7 @@ function getandshowsearch() {
     var text = document.getElementById("searchtext");
     // alert(text.value);
     var index = text.value;
-    var url = 'product.html?username=' + username + '&password=' + password + '&index=' + index;
+    var url = 'product.html?username=' + username + '&passwd=' + password + '&index=' + index;
     window.open(url);
 }
 
