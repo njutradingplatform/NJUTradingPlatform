@@ -18,12 +18,14 @@ if (Request["username"] !== undefined)
     username = Request["username"];
 if (Request["password"] !== undefined)
     password = Request["password"];
-// alert(index);
+alert(index);
 // alert(username);
 //获得username
 //获得index进行search
-function Searchproduct(msg) {
+// function Searchproduct(msg) {
     //alert(msg.length);
+    var msg=search_api(''+index);
+    alert(msg.length);
     var picturegrid=document.getElementsByClassName("img-responsive watch-right");
     var linkgrid=document.getElementsByClassName("gotosingle");
     // alert(picturegrid.length);
@@ -50,7 +52,7 @@ function Searchproduct(msg) {
         divmask.className='mask';
         // alert(divmask.innerHTML);
         img.className='img-responsive watch-right';
-        img.src='images/ba.jpg';
+        img.src=msg[i].image_path;
         //照片
         img.alt='';
         // alert(img.innerHTML);
@@ -58,15 +60,15 @@ function Searchproduct(msg) {
         divleft.appendChild(divmask);
         // alert(divleft.innerHTML);
         agotosingle.className='gotosingle';
-        agotosingle.href='single.html?username=whw&password=219&index=images/ba.jpg';
+        agotosingle.href='single.html?username='+username+'&password='+password+'&index='+msg[i].id;
         //直接添加对应的single.html+id然后查看
         agotosingle.appendChild(divleft);
         //链接需要添加onclick
         // alert(agotosingle.innerHTML);
         divcontentbox.appendChild(agotosingle);
         divcontentbox.className='content_box';
-        h4.innerHTML='商品';
-        p.innerHTML='It is a long established fact that a reader';
+        h4.innerHTML=msg[i].name;
+        p.innerHTML=msg[i].price;
         divcontentbox.appendChild(h4);
         divcontentbox.appendChild(p);
         // alert(divcontentbox.innerHTML);
@@ -92,4 +94,4 @@ function Searchproduct(msg) {
             links.href=arr[i];
         }
     }*/
-}
+// }
