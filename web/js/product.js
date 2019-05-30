@@ -112,3 +112,7 @@ function getandshowsearch(){
     var url = 'product.html?username='+username+'&passwd='+password+'&index='+index;
     window.open(url);
 }
+function aisupport() {
+    var text=document.getElementById("ai");
+    alert(ai_api(text.value));
+}
