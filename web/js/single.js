@@ -42,6 +42,11 @@ function singleaddtocart() {
     alert("添加成功");
 }
 function cart() {
+    if(!loginState){
+        alert("请先登录");
+        window.open("login.html");
+        window.close();
+    }
     var index = 'cart';
     var url = 'cart.html?username='+username+'&password='+password+'&index='+index;
     window.open(url);

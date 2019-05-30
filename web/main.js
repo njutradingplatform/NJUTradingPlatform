@@ -30,6 +30,14 @@ var express =require("express");
 var bodyParser = require('body-parser');
 var app=express();
 
+let http = require("http");
+let https = require("https");
+
+const httpsOption = {
+    key : fs.readFileSync("./server.key"),
+    cert: fs.readFileSync("./server.crt")
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -42,7 +50,8 @@ var allowCors = function(req, res, next) {
 };
 app.use(allowCors);//使用跨域中间件
 
-app.use(express.static(".")).listen(80);
+app.use(express.static("."));
+https.createServer(httpsOption, app).listen(443);
 
 app.post('/find_user', function (req, ress) {
     // 登录函数
