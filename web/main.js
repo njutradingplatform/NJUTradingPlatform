@@ -496,13 +496,13 @@ app.post('/find_product', function (req, ress) {
 });
 
 app.post('/initialization_shopping_cart', function (req, ress) {
-    function initialization_shopping_cart(pid,email){
+    function initialization_shopping_cart(email){
         var sql='SELECT s.id, s.pid, s.number, s.user_email, p.price, p.cid, p.number stock, p.seller, p.description,\n' +
             'p.image_path, p.name\n' +
             'FROM shopping_cart s\n' +
             'INNER JOIN products p\n' +
             'ON s.pid =p.id \n' +
-            'WHERE s.pid='+pid +'AND user_email= \''+email+'\'';
+            'WHERE user_email= \''+email+'\'';
 
         function query(){
             connection.query(sql,function(err,rows){
@@ -518,5 +518,5 @@ app.post('/initialization_shopping_cart', function (req, ress) {
 
     if (!req.body) return ress.sendStatus(400);
     // console.log(req.body.text);
-    initialization_shopping_cart(req.body.pid,req.body.email);
+    initialization_shopping_cart(req.body.email);
 });

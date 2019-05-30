@@ -210,7 +210,7 @@ function Recommendation() {
     return result;
 }
 
-function initialization_shopping_cart_api(pid,email) {
+function initialization_shopping_cart_api(email) {
     var result=[];
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://172.26.22.71:2346/initialization_shopping_cart", false);
@@ -220,7 +220,7 @@ function initialization_shopping_cart_api(pid,email) {
             result=JSON.parse(xhr.responseText);
         }
     }
-    xhr.send(JSON.stringify({"pid":pid,"email":email}));
+    xhr.send(JSON.stringify({"email":email}));
     // alert(result);
     return result;
 }
