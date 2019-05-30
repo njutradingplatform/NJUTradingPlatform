@@ -113,6 +113,7 @@ app.post('/get_user', function (req, ress) {
 
 app.post('/registration', function (req, ress) {
     //用户注册函数
+    console.log("aaa");
     function registration(email,password,first_name,last_name){
 
         // email 为数据库查询结果
@@ -135,6 +136,7 @@ app.post('/registration', function (req, ress) {
         function query(callback){
             connection.query(sql,function(err,rows){
                 var judge=1; //判断变量是否存在用户名
+                console.log(rows);
                 if(err||rows.length===0) {
                     judge = 0;
                 }
@@ -155,7 +157,7 @@ app.post('/registration', function (req, ress) {
     }
 
     if (!req.body) return ress.sendStatus(400);
-    console.log(req.body);
+    console.log(req.body.email);
     registration(req.body.email,req.body.password,req.body.first_name,req.body.last_name);
 });
 
