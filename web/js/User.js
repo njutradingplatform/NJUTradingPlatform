@@ -83,6 +83,12 @@ function Init(username, passwd) {
                 email_name.value = username;
             } catch (e) {
             }
+            try{
+                var view_all=document.getElementsByClassName("view-all all-product");
+                view_all[0].href+=tempUrl;
+            }
+            catch (e) {
+            }
         }
     }
 
