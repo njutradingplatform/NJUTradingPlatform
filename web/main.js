@@ -3,11 +3,7 @@ var express =require("express");
 var bodyParser = require('body-parser');
 var app=express();
 
-
-var new_element=document.createElement("script");
-new_element.setAttribute("type","text/javascript");
-new_element.setAttribute("src","js/connection_mysql.js");// 在这里引入了a.js
-document.body.appendChild(new_element);
+var sql=require("./js/connection_mysql.js");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,7 +22,7 @@ app.use(express.static(".")).listen(80);
 app.post('/search', function (req, res) {
     if (!req.body) return res.sendStatus(400);
     console.log(req.body)
-    Search(req.body,res.send)
+    sql.Search(req.body,res.send)
     // res.send({"status":"success", "name": req.body.name, "age": req.body.age});
 });
 
