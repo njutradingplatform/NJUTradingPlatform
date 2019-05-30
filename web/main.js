@@ -345,4 +345,100 @@ app.post('/search', function (req, ress) {
     Search(req.body.text);
 });
 
+app.post('/Default_products', function (req, ress) {
+    function Default_products(){
+        var sql='SELECT * FROM products';
 
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                ress.send(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Default_products();
+});
+
+app.post('/Payment', function (req, ress) {
+    //修改购物车这个商品的数量
+    function Payment(pid,number){
+        var sql='SELECT * FROM products WHERE id='+pid;
+
+        // 逻辑放在callback中避免异步执行问题
+        function callback(rows){
+            var res;
+            res=rows;
+
+            if(res[0].number>=number){
+                var sql1='UPDATE products SET number='+res[0].number-number+''+', sales='+res[0].sales+number+' WHERE id='+pid;
+
+                function query1(){
+                    connection.query(sql1,function(err,rows){
+                        if(err) {
+                            ress.send({"state":-1});
+                        }
+                        ress.send({"state":1});
+                    })
+                }
+                query1();
+
+
+            }
+
+        }
+
+        function query(callback){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send({"state":-1});
+                }
+                callback(rows);
+            })
+        }
+        query(callback);
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Payment(req.body.pid,req.body.number);
+});
+
+app.post('/Recommendation', function (req, ress) {
+    function Recommendation(){
+        var sql='SELECT * FROM products';
+
+        function callback(rows){
+            var res;
+            res=rows;
+
+            res=res.sort(function(a,b){
+                return a.sales - b.sales
+            });
+
+            ress.send(res);
+        }
+
+        function query(){
+            connection.query(sql,function(err,rows){
+                if(err) {
+                    ress.send([]);
+                }
+                callback(rows);
+            })
+        }
+        query();
+
+    }
+
+    if (!req.body) return ress.sendStatus(400);
+    // console.log(req.body.text);
+    Recommendation();
+});
