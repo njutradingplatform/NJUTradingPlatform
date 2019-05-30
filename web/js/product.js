@@ -117,7 +117,7 @@ function contact() {
 function addcart(msg) {
     //先得到增加的长度 以及数
     var insert=document.getElementsByClassName("addcarts");
-    for(i=0;i<2;i++)
+    for(i=0;i<4;i++)
     {
         alert('st');
         var tr=document.createElement("tr");
@@ -128,13 +128,13 @@ function addcart(msg) {
         var td5=document.createElement("td");
         var td6=document.createElement("td");
         var td7=document.createElement("td");
-        td1.innerHTML=3;//msg[i].id;
+        td1.innerHTML=i;//msg[i].id;
         td2.innerHTML="<img src='images/ba.jpg' width=\"150\" height=\"150\" alt=\"\">";
         td3.innerHTML=1;//msg[i].des;
         td4.innerHTML=2;//msg[i].price;
         td5.innerHTML=3;//msg[i].number;
         td6.innerHTML=4;//msg[i].price*msg[i].number;
-        td7.innerHTML="<input type='button' class="+"'" +i+"'"+" value='删除'>";
+        td7.innerHTML="<input type='button' class='del' value='删除'>";
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
@@ -142,12 +142,133 @@ function addcart(msg) {
         tr.appendChild(td5);
         tr.appendChild(td6);
         tr.appendChild(td7);
-        var btn=document.getElementsByClassName(i);
-        btn.onclick=insert[0].deleteRow(i);
         insert[0].appendChild(tr);
     }
-
-
+    var dels=document.querySelectorAll(".del")
+    alert(dels.length);
+    for(i=0;i<dels.length;i++)
+    {
+        dels[i].onclick=function () {
+            var tr = this.parentNode.parentNode;
+            tr.remove();
+        }
+    }
+//    更改msg返回数据库
+}
+/* function clearall(msg) {
+    var total=0;
+    for(i=0;i<msg.length)
+    {
+        total+=msg[i].number*msg[i].price;
+    }
+}*/
+//结算
+function Searchproduct() {
+    var picturegrid=document.getElementsByClassName("img-responsive watch-right");
+    var linkgrid=document.getElementsByClassName("gotosingle");
+    // alert(picturegrid.length);
+    /*for(i=0;i<9;i++)
+    {
+        picturegrid[i].src='images/wat.jpg';
+    }*/
+    for(i=0;i<11;i++)
+    {
+        var insert=document.getElementsByClassName("women-product")
+        var divproductgrid=document.createElement("div");
+        var divcontentbox=document.createElement("div");
+        var agotosingle=document.createElement("a");
+        var divleft=document.createElement("div");
+        var img=document.createElement("img");
+        var divmask=document.createElement("div");
+        var divinfo=document.createElement("div");
+        var h4=document.createElement("h4");
+        var p=document.createElement("p");
+        divinfo.className='info';
+        divinfo.innerHTML='Quik look';
+        // alert(divinfo.innerHTML);
+        divmask.appendChild(divinfo);
+        divmask.className='mask';
+        // alert(divmask.innerHTML);
+        img.className='img-responsive watch-right';
+        img.src='images/ba.jpg';
+        //照片
+        img.alt='';
+        // alert(img.innerHTML);
+        divleft.appendChild(img);
+        divleft.appendChild(divmask);
+        // alert(divleft.innerHTML);
+        agotosingle.className='gotosingle';
+        agotosingle.href='single.html';
+        agotosingle.appendChild(divleft);
+        //链接需要添加onclick
+        // alert(agotosingle.innerHTML);
+        divcontentbox.appendChild(agotosingle);
+        divcontentbox.className='content_box';
+        h4.innerHTML='商品';
+        p.innerHTML='It is a long established fact that a reader';
+        divcontentbox.appendChild(h4);
+        divcontentbox.appendChild(p);
+        // alert(divcontentbox.innerHTML);
+        //h4 商品名称 p商品价格
+        divproductgrid.className=' product-grid';
+        divproductgrid.appendChild(divcontentbox);
+        // alert(divproductgrid.innerHTML);
+        insert[0].appendChild(divproductgrid);
+    }
+//    页面增加
+    var gotolink=document.querySelectorAll(".gotosingle")
+    alert(gotolink.length);
+    for(i=0;i<gotolink.length;i++)
+    {
+        gotolink[i].onclick=function () {
+            alert(22);
+            var links=this;
+            alert(links);
+            alert('cart.html');
+            links.href='cart.html';
+        }
+    }
+}
+function addshelf(msg) {
+    //先得到增加的长度 以及数
+    var insert=document.getElementsByClassName("addshelf");
+    for(i=0;i<4;i++)
+    {
+        alert('st');
+        var tr=document.createElement("tr");
+        var td1=document.createElement("td");
+        var td2=document.createElement("td");
+        var td3=document.createElement("td");
+        var td4=document.createElement("td");
+        var td5=document.createElement("td");
+        var td6=document.createElement("td");
+        var td7=document.createElement("td");
+        td1.innerHTML=i;//msg[i].id;
+        td2.innerHTML="<img src='images/ba.jpg' width=\"150\" height=\"150\" alt=\"\">";
+        td3.innerHTML=1;//msg[i].des;
+        td4.innerHTML=2;//msg[i].price;
+        td5.innerHTML=3;//msg[i].number;
+        td6.innerHTML=4;//msg[i].price*msg[i].number;
+        td7.innerHTML="<input type='button' class='del' value='删除'>";
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        tr.appendChild(td7);
+        insert[0].appendChild(tr);
+    }
+    var dels=document.querySelectorAll(".del")
+    alert(dels.length);
+    for(i=0;i<dels.length;i++)
+    {
+        dels[i].onclick=function () {
+            var tr = this.parentNode.parentNode;
+            tr.remove();
+        }
+    }
+//    更改msg返回数据库
 }
 function upgrade(username) {
     //根据username获得数据库数据
