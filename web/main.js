@@ -38,7 +38,7 @@ app.post('/search', function (req, res) {
     //     });
     // }
     if (!req.body) return res.sendStatus(400);
-    console.log('filename: ' + req.body.filename);
-    res.send({"status":"success", "name": 111, "age": 2222});
+    console.log('filename: ' + req.body.name);
+    res.send({"status":"success", "name": req.body.name, "age": req.body.age});
 });
 
