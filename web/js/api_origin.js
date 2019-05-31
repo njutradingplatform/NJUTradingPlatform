@@ -156,7 +156,7 @@ function ai_api(msg) {
             result=JSON.parse(xhr.responseText).result[0][0];
         }
     }
-    alert(msg);
+    //alert(msg);
     xhr.send(JSON.stringify({
         "id": 123,
         "texts": [msg],
