@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Login</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--theme-style-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!--fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easydropdown.js"></script>
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-left">
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><a href="#"><span class="live">AI Support</span></a></li>
+                </ul>
+                <ul class="support">
+                    <li class="van"><a href="#"></a></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="top-header-right">
+                <ul class="touxiang">
+              		<li><a href="register.html"><span> </span>用户名</a></li>
+                </ul>
+                <ul class="top-header-right">
+                    <li class="van"><a href="#"></a></li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix">
+
+        </div>
+    </div>
+</div>
+<div class="bottom-header">
+    <div class="container">
+        <div class="header-bottom-left">
+            <div class="logo">
+                <a href="index.html"></a>
+            </div>
+            <div class="search">
+                <input type="text" value="" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = '';}">
+                <input type="submit" value="搜索">
+
+            </div>
+            <img src="images/headtitle.png" width="250" height="73" alt=""/></div>
+        <div class="header-bottom-right">
+            <ul class="men-grid">
+
+                <li class="login"><a href="login.html"><span> </span>登陆</a></li>
+                <li class="signin"><a href="register.html"><span> </span>注册</a></li>
+                <li class="cart"><a href="cart.html"><span> </span>购物车</a></li>
+            </ul>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</div>
+<!---->
+<div class="container">
+
+    <div class="account_grid">
+        <div class=" login-right">
+            <h3>已注册用户</h3>
+            <p>如果已有账户请登陆</p>
+            <form onsubmit="Login_button()">
+                <div>
+					<span>邮箱地址
+					<label>*</label></span>
+                    <input type="text" id="email">
+                </div>
+                <div>
+					<span>密码
+					<label>*</label></span>
+                    <input type="password" id="passwd">
+                </div>
+                <a class="forgot" href="#">忘记密码?</a>
+                <input type="submit" value="登陆">
+            </form>
+        </div>
+        <div class=" login-left">
+            <h3>新用户</h3>
+            <p>通过填写一个简单的表格，即可注册！</p>
+            <a class="acount-btn" href="register.html">创建账号</a></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="sub-cate"> <!--initiate accordion-->
+        <script type="text/javascript">
+            $(function () {
+                var menu_ul = $('.menu > li > ul'),
+                    menu_a = $('.menu > li > a');
+                menu_ul.hide();
+                menu_a.click(function (e) {
+                    e.preventDefault();
+                    if (!$(this).hasClass('active')) {
+                        menu_a.removeClass('active');
+                        menu_ul.filter(':visible').slideUp('normal');
+                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                    } else {
+                        $(this).removeClass('active');
+                        $(this).next().stop(true, true).slideUp('normal');
+                    }
+                });
+
+            });
+        </script>
+        <div class="chain-grid menu-chain">
+            <a href="single.html"><img class="img-responsive chain" src="images/wat.jpg" alt=" "/></a>
+            <div class="grid-chain-bottom chain-watch">
+                <span class="actual dolor-left-grid">300$</span>
+                <span class="reducedfrom">500$</span>
+                <h6>Lorem ipsum dolor</h6>
+            </div>
+        </div>
+        <a class="view-all all-product" href="product.html">查看所有商品<span>&nbsp;</span></a></div>
+    <div class="clearfix"></div>
+</div>
+<!---->
+<script src="js/api.js"></script>
+<script src="js/User.js"></script>
+</body>
+</html>
